@@ -24,28 +24,46 @@
 	// Terminales.
 	token token;
 	int integer;
+	char* string;
 }
 
 // IDs y tipos de los tokens terminales generados desde Flex.
-%token <token> ADD
-%token <token> SUB
-%token <token> MUL
-%token <token> DIV
-
+%token <token> START
+%token <token> END
+%token <token> FORMATION 
+%token <token> FORMATIONNUMBER
+%token <token> LINEUPNONUM
+%token <token> LINEUP
+%token <token> METADATA
+%token <token> DATE
+%token <token> DATESTRING 
+%token <token> RESULT
+%token <token> RESULTSTRING
+%token <token> TEAM
+%token <token> OF 
+%token <token> PLAYERSFORMATION
+%token <token> SUBSTITUTES
+%token <token> SUBSTITUTESNONUM
+%token <token> DASH
+%token <token> COLON
+%token <token> APOSTROPHE
+%token <token> NUMBER
+%token <token> YYUNDEF
 %token <token> OPEN_PARENTHESIS
 %token <token> CLOSE_PARENTHESIS
-
 %token <integer> INTEGER
 
 // Tipos de dato para los no-terminales generados desde Bison.
-%type <program> program
-%type <expression> expression
-%type <factor> factor
-%type <constant> constant
-
-// Reglas de asociatividad y precedencia (de menor a mayor).
-%left ADD SUB
-%left MUL DIV
+%type <info> info
+%type <playerInfo> playerInfo
+%type <subsitutes> subsitutes
+%type <metadata> metadata
+%type <matchDate> matchDate
+%type <matchResult> matchResult
+%type <lineup> lineup
+%type <lineupNoNum> lineupNoNum
+%type <playerInfoNoNum> playerInfoNoNum
+%type <subsitutesNoNum> subsitutesNoNum 
 
 // El símbolo inicial de la gramatica.
 %start program
