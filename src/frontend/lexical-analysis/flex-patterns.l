@@ -18,7 +18,7 @@
 
 /* Patrones reutilizables. */
 number			        [1-9][0-9]*
-whitespaceOrEndline		[ \f\n\r\t\v\n]
+whitespaceOrEndline		[ \f\n\r\t\v]
 string                  [A-Za-z ]+
 
 %%

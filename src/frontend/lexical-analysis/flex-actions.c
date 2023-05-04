@@ -111,14 +111,12 @@ token NumberAction(const char * match){
 	yylval.integer=atoi(match);
 	return NUMBER;
 };
-
 token UnknownPatternAction(const char * lexeme, const int length) {
 	LogDebug("UnknownPatternAction: '%s' (length = %d).", lexeme, length);
 	yylval.token = YYUNDEF;
 	// Al emitir este token, el compilador aborta la ejecución.
 	return YYUNDEF;
 }
-
 void IgnoredPatternAction(const char * lexeme, const int length) {
 	LogDebug("IgnoredPatternAction: '%s' (length = %d).", lexeme, length);
 	// Como no debe hacer nada con el patrón, solo se loguea en consola.
