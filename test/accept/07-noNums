@@ -1,0 +1,16 @@
+START
+TEAM 'The Red Devils' OF 5 PLAYERS
+FORMATION
+2-1-1
+LINEUPNONUM
+'El Manco'
+'Alves Daniel'
+'Pedrito Lopez'
+'Gaston Perez'
+'Pepito Radiactivo'
+SUBSTITUTESNONUM
+'La Maquina'
+'Pedrito'
+METADATA
+DATE:'07-07-2001' RESULT:'5-0'
+END

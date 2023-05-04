@@ -29,6 +29,7 @@
 	int substitutesNoNum;
 	int team;
 	int formation;
+	int formationNumber;
 	
 
 	// Terminales.
@@ -78,6 +79,7 @@
 %type <substitutesNoNum> substitutesNoNum 
 %type <formation> formation
 %type <team> team
+%type <formationNumber> formationNumber
 
 
 // El símbolo inicial de la gramatica.
@@ -97,7 +99,10 @@ team: TEAM STRING OF NUMBER PLAYERS		{ $$ = Return0(); }
 	| TEAM OF NUMBER PLAYERS			{ $$ = Return0(); }
 	;
 
-formation: FORMATION FORMATIONNUMBER							{ $$ = Return0(); }
+formation: FORMATION formationNumber							{ $$ = Return0(); }
+	;
+formationNumber: FORMATIONNUMBER formationNumber				{ $$ = Return0(); }
+	| FORMATIONNUMBER											{ $$ = Return0(); }
 	;
 
 lineup: LINEUP playerInfo substitutes							{ $$ = Return0(); }
