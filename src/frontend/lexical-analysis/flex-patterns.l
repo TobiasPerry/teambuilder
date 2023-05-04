@@ -43,8 +43,8 @@ string                  [A-Za-z ]+
 "TEAM"                                                      { return TeamAction(yytext); }
 "OF"                                                        { return OfAction(yytext); }
 "PLAYERSFORMATION"                                          { return PlayersFormationAction(yytext); }
-"SUBSITUTES"                                                { return SubsitutesAction(yytext,0); }
-"SUBSITUTESNONUM"                                           { return SubstitutesAction(yytext,1); }
+"SUBSTITUTES"                                                { return SubstitutesAction(yytext, 0); }
+"SUBSTITUTESNONUM"                                           { return SubstitutesAction(yytext, 1); }
 "-"                                                         { return DashAction(yytext); }
 ":"                                                         { return ColonAction(yytext); }
 "'"                                                         { return ApostropheAction(yytext); }

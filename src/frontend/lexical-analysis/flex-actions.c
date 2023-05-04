@@ -83,7 +83,7 @@ token PlayersFormationAction(const char * match){
 	yylval.token = PLAYERSFORMATION;
 	return PLAYERSFORMATION;
 }; 
-token SubsitutesAction(const char * match,int option){
+token SubstitutesAction(const char * match,int option){
 	if (option == 0){
 		yylval.token = SUBSTITUTES;
 		return SUBSTITUTES;
@@ -108,7 +108,7 @@ token StringAction(const char * match){
 	return STRING;
 };
 token NumberAction(const char * match){
-	yylval.number=atoi(match);
+	yylval.integer=atoi(match);
 	return NUMBER;
 };
 
