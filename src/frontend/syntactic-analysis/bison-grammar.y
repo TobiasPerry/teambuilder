@@ -27,6 +27,8 @@
 	int lineupNoNum;
 	int playerInfoNoNum;
 	int substitutesNoNum;
+	int team;
+	int formation;
 	
 
 	// Terminales.
