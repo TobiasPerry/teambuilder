@@ -1,0 +1,22 @@
+START
+TEAM 'The Red Devils' OF 11 PLAYERS
+FORMATION
+4-4-2
+LINEUPNONUM
+'Dithurbide Manuel Esteban'
+'Alves Daniel'
+'Smith John'
+'Garcia Maria'
+'Lee David'
+'Singh Ravi'
+'Johnson Sarah'
+'Martinez Pedro'
+'Kim Soo-hyun'
+'Davis Michael'
+'Gomez Sofia'
+SUBSTITUTES
+17: 'Julian ALvarez'
+19: 'Uriel Ortega'
+METADATA
+DATE: '07-07-2001'
+END
