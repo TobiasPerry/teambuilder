@@ -27,12 +27,13 @@ void EndCommentPatternAction() {
 }
 
 token StartAction(const char * match){
+	printf("%s %s\n", "START DETECTADO: ", match);
 	yylval.token=START;
 	return START;
 }
 
 token EndAction(const char * match){
-	yylval.token = END;
+	printf("%s %s\n", "END DETECTADO: ", match);
 	return END;
 };           
 token FormationAction(const char * match){
@@ -72,14 +73,17 @@ token ResultStringAction(const char * match){
 	return RESULTSTRING;
 }
 token TeamAction(const char * match){
+	printf("%s %s\n", "TEAM DETECTADO: ", match);
 	yylval.token = TEAM;
 	return TEAM;
 }; 
 token OfAction(const char * match){
+	printf("%s %s\n", "OF DETECTADO: ", match);
 	yylval.token = OF;
 	return OF;
 }; 
 token PlayersAction(const char * match){
+	printf("%s %s\n", "PLAYER DETECTADO: ", match);
 	yylval.token = PLAYERS;
 	return PLAYERS;
 }; 
@@ -92,6 +96,7 @@ token SubstitutesAction(const char * match,int option){
 	return SUBSTITUTESNONUM;
 }; 
 token DashAction(const char * match){
+	printf("%s %s\n", "DASH DETECTADO: ", match);
 	yylval.token = DASH;
 	return DASH;
 }; 
@@ -104,10 +109,12 @@ token ApostropheAction(const char * match){
 	return APOSTROPHE;
 }; 
 token StringAction(const char * match){
+	printf("%s %s\n", "STRING DETECTADO: ", match);
 	yylval.string = (char*) match;
 	return STRING;
 };
 token NumberAction(const char * match){
+	printf("%s %s\n", "NUMBER DETECTADO: ", match);
 	yylval.integer=atoi(match);
 	return NUMBER;
 };
@@ -119,7 +126,6 @@ token UnknownPatternAction(const char * lexeme, const int length) {
 	return YYUNDEF;
 }
 void IgnoredPatternAction(const char * lexeme, const int length) {
-	printf("%s", "IGNORED PATTERN");
 	LogDebug("IgnoredPatternAction: '%s' (length = %d).", lexeme, length);
 	// Como no debe hacer nada con el patrón, solo se loguea en consola.
 }

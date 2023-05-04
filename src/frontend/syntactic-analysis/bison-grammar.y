@@ -85,53 +85,17 @@
 
 %%
 
-initial: START info END											{ $$ = InitialAction($2); }
+initial: START info END											{ $$ = InitialAction(0); }
 	;
 
-info: team formation lineup metadata							{ $$ = Return0(); }
-	| team formation lineupNoNum metadata						{ $$ = Return0(); }
+info: team 			 											{ $$ = Return0(); }
 	| %empty													{ $$ = Return0(); }
 	;
+
 
 team: TEAM APOSTROPHE STRING APOSTROPHE OF NUMBER PLAYERS		{ $$ = Return0(); }
 	;
 
 formation: FORMATION FORMATIONNUMBER							{ $$ = Return0(); }
 	;
-
-lineup: LINEUP playerInfo substitutes							{ $$ = Return0(); }
-	| LINEUP playerInfo											{ $$ = Return0(); }
-	;
-
-lineupNoNum: LINEUPNONUM playerInfoNoNum substitutesNoNum 			{ $$ = Return0();}
-	| LINEUPNONUM playerInfoNoNum									{ $$ = Return0(); }	
-	;	
-
-playerInfo: NUMBER COLON APOSTROPHE STRING APOSTROPHE playerInfo	{ $$ = Return0(); }
-	| NUMBER COLON APOSTROPHE STRING APOSTROPHE						{ $$ = Return0(); }
-	;
-
-playerInfoNoNum: APOSTROPHE STRING APOSTROPHE playerInfoNoNum	{ $$ = Return0(); }
-	| APOSTROPHE STRING APOSTROPHE								{ $$ = Return0(); }
-	;
-
-substitutes: SUBSTITUTES playerInfo								{ $$ = Return0(); }
-	| %empty													{ $$ = Return0(); }
-	;
-
-substitutesNoNum: SUBSTITUTESNONUM playerInfoNoNum				{ $$ = Return0(); }
-	| %empty													{ $$ = Return0(); }
-	;
-
-metadata: METADATA matchDate matchResult						{ $$ = Return0(); }
-	;
-
-matchDate: DATE COLON APOSTROPHE DATESTRING APOSTROPHE			{ $$ = Return0(); }
-	;
-
-matchResult: RESULT COLON APOSTROPHE RESULTSTRING APOSTROPHE	{ $$ = Return0(); }
-	;
-
-
-
 %%
