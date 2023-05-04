@@ -71,21 +71,46 @@
 
 %%
 
-program: expression													{ $$ = ProgramGrammarAction($1); }
+initial: START info END											{ $$ = InitialAction($2); }
 	;
 
-expression: expression[left] ADD expression[right]					{ $$ = AdditionExpressionGrammarAction($left, $right); }
-	| expression[left] SUB expression[right]						{ $$ = SubtractionExpressionGrammarAction($left, $right); }
-	| expression[left] MUL expression[right]						{ $$ = MultiplicationExpressionGrammarAction($left, $right); }
-	| expression[left] DIV expression[right]						{ $$ = DivisionExpressionGrammarAction($left, $right); }
-	| factor														{ $$ = FactorExpressionGrammarAction($1); }
+info: team formation lineup metadata							{ $$ = Return0(); }
+	| team formation lineupNoNum metadata						{ $$ = Return0(); }
+	| %empty													{ $$ = Return0(); }
 	;
 
-factor: OPEN_PARENTHESIS expression CLOSE_PARENTHESIS				{ $$ = ExpressionFactorGrammarAction($2); }
-	| constant														{ $$ = ConstantFactorGrammarAction($1); }
+team: TEAM APOSTROPHE STRING APOSTROPHE OF NUMBER PLAYERS		{ $$ = Return0(); }
 	;
 
-constant: INTEGER													{ $$ = IntegerConstantGrammarAction($1); }
+formation: FORMATION FORMATIONNUMBER							{ $$ = Return0(); }
 	;
+
+lineup: LINEUP playerInfo subsitutes							{ $$ = Return0(); }
+	;
+
+playerInfo: NUMBER COLON APOSTROPHE STRING APOSTROPHE playerInfo	{ $$ = Return0(); }
+	| NUMBER COLON APOSTROPHE STRING APOSTROPHE						{ $$ = Return0(); }
+	;
+
+playerInfoNoNum: APOSTROPHE STRING APOSTROPHE playerInfoNoNum	{ $$ = Return0(); }
+	| APOSTROPHE STRING APOSTROPHE								{ $$ = Return0(); }
+	;
+
+substitutes: SUBSTITUTES playerInfo								{ $$ = Return0(); }
+	;
+
+substitutesNoNum: SUBSTITUTESNONUM playerInfoNoNum				{ $$ = Return0(); }
+	;
+
+metadata: METADATA matchDate matchResult						{ $$ = Return0(); }
+	;
+
+matchDate: DATE COLON APOSTROPHE DATESTRING APOSTROPHE			{ $$ = Return0(); }
+	;
+
+matchResult: RESULT COLON APOSTROPHE RESULTSTRING APOSTROPHE	{ $$ = Return0(); }
+	;
+
+
 
 %%
