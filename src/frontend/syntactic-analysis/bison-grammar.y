@@ -100,11 +100,9 @@ formation: FORMATION FORMATIONNUMBER							{ $$ = Return0(); }
 	;
 
 lineup: LINEUP playerInfo substitutes							{ $$ = Return0(); }
-	| LINEUP playerInfo											{ $$ = Return0(); }
 	;
 
 lineupNoNum: LINEUPNONUM playerInfoNoNum substitutesNoNum 			{ $$ = Return0();}
-	| LINEUPNONUM playerInfoNoNum									{ $$ = Return0(); }	
 	;	
 
 playerInfo: NUMBER COLON APOSTROPHE STRING APOSTROPHE playerInfo	{ $$ = Return0(); }
