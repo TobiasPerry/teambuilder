@@ -19,10 +19,12 @@
 
 /* Patrones reutilizables. */
 number			        [1-9][0-9]*
-whitespaceOrEndline		[ \f\n\r\t\v]
-string                  [A-Za-z ]+
+whitespaceOrEndline		[\f\n\r\t\v]
+string                  '[\-A-Za-z ]+'
+white                   [ ]
 
 %%
+{white}                                                     { IgnoredPatternAction(yytext, yyleng); }
 "START"                                                     { return StartAction(yytext); }
 "END"                                                       { return EndAction(yytext); }           
 "FORMATION"                                                 { return FormationAction(yytext); }
@@ -44,8 +46,8 @@ string                  [A-Za-z ]+
 "'"                                                         { return ApostropheAction(yytext); }
 {string}                                                    { return StringAction(yytext);}
 {number}                                                    { return NumberAction(yytext);}   
-
 {whitespaceOrEndline}						                { IgnoredPatternAction(yytext, yyleng); }
+
 
 .											                { return UnknownPatternAction(yytext, yyleng); }
 

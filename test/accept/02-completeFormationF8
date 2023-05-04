@@ -1,0 +1,19 @@
+START
+TEAM 'The Octopus' OF 8 PLAYERS
+FORMATION
+4-2-1
+LINEUP
+1: 'Martinez Pedro'
+2: 'Kim Soo-hyun'
+3: 'Jones Emma'
+4: 'Gonzalez Diego'
+5: 'Wong Wei'
+6: 'Davis Michael'
+7: 'Lee Jae-yong'
+8: 'Gomez Sofia'
+SUBSTITUTES
+9: 'La Maquina'
+10: 'Pedrito'
+METADATA
+DATE: '03-09-2021' RESULT: '2-1'
+END
