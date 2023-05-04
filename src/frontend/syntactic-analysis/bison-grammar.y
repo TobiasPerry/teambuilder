@@ -51,7 +51,6 @@
 %token <token> RESULTSTRING
 %token <token> TEAM
 %token <token> OF 
-%token <token> PLAYERSFORMATION
 %token <token> SUBSTITUTES
 %token <token> SUBSTITUTESNONUM
 %token <token> DASH
@@ -101,9 +100,11 @@ formation: FORMATION FORMATIONNUMBER							{ $$ = Return0(); }
 	;
 
 lineup: LINEUP playerInfo substitutes							{ $$ = Return0(); }
+	| LINEUP playerInfo											{ $$ = Return0(); }
 	;
 
 lineupNoNum: LINEUPNONUM playerInfoNoNum substitutesNoNum 			{ $$ = Return0();}
+	| LINEUPNONUM playerInfoNoNum									{ $$ = Return0(); }	
 	;	
 
 playerInfo: NUMBER COLON APOSTROPHE STRING APOSTROPHE playerInfo	{ $$ = Return0(); }
@@ -115,9 +116,11 @@ playerInfoNoNum: APOSTROPHE STRING APOSTROPHE playerInfoNoNum	{ $$ = Return0(); 
 	;
 
 substitutes: SUBSTITUTES playerInfo								{ $$ = Return0(); }
+	| %empty													{ $$ = Return0(); }
 	;
 
 substitutesNoNum: SUBSTITUTESNONUM playerInfoNoNum				{ $$ = Return0(); }
+	| %empty													{ $$ = Return0(); }
 	;
 
 metadata: METADATA matchDate matchResult						{ $$ = Return0(); }

@@ -79,9 +79,9 @@ token OfAction(const char * match){
 	yylval.token = OF;
 	return OF;
 }; 
-token PlayersFormationAction(const char * match){
-	yylval.token = PLAYERSFORMATION;
-	return PLAYERSFORMATION;
+token PlayersAction(const char * match){
+	yylval.token = PLAYERS;
+	return PLAYERS;
 }; 
 token SubstitutesAction(const char * match,int option){
 	if (option == 0){
@@ -112,12 +112,14 @@ token NumberAction(const char * match){
 	return NUMBER;
 };
 token UnknownPatternAction(const char * lexeme, const int length) {
+	printf("%s", "UNKNOWN PATTERN");
 	LogDebug("UnknownPatternAction: '%s' (length = %d).", lexeme, length);
 	yylval.token = YYUNDEF;
 	// Al emitir este token, el compilador aborta la ejecución.
 	return YYUNDEF;
 }
 void IgnoredPatternAction(const char * lexeme, const int length) {
+	printf("%s", "IGNORED PATTERN");
 	LogDebug("IgnoredPatternAction: '%s' (length = %d).", lexeme, length);
 	// Como no debe hacer nada con el patrón, solo se loguea en consola.
 }
