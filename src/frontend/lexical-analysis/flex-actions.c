@@ -26,47 +26,73 @@ void EndCommentPatternAction() {
 	LogDebug("EndCommentPatternAction.");
 }
 
-token AdditionOperatorPatternAction(const char * lexeme) {
-	LogDebug("AdditionOperatorPatternAction: '%s'.", lexeme);
-	yylval.token = ADD;
-	return ADD;
+token StartAction(const char * match){
+	return START;
 }
 
-token CloseParenthesisPatternAction(const char * lexeme) {
-	LogDebug("CloseParenthesisPatternAction: '%s'.", lexeme);
-	yylval.token = CLOSE_PARENTHESIS;
-	return CLOSE_PARENTHESIS;
+token EndAction(const char * match){
+	return END;
+};           
+token FormationAction(const char * match){
+	return FORMATION;
+}; 
+token FormationNumberAction(const char * match){
+	yylval.string = match;
+	return FORMATIONNUMBER;
+};
+token LineupAction(const char * match,int option){
+	if (option == 0)
+		return LINEUP;
+	return LINEUPNONUM;
+}; 
+token MetadataAction(const char * match){
+	return METADATA;
+}; 
+token DateAction(const char * match){
+	return DATE;
+}; 
+token DateStringAction(const char * match){
+	yylval.string = match;
+	return DATESTRING;
 }
-
-token DivisionOperatorPatternAction(const char * lexeme) {
-	LogDebug("DivisionOperatorPatternAction: '%s'.", lexeme);
-	yylval.token = DIV;
-	return DIV;
+token ResultAction(const char * match){
+	return RESULT;
+}; 
+token ResultStringAction(const char * match){
+	yylval.string = match;
+	return RESULTSTRING;
 }
-
-token IntegerPatternAction(const char * lexeme, const int length) {
-	LogDebug("IntegerPatternAction: '%s' (length = %d).", lexeme, length);
-	yylval.integer = atoi(lexeme);
-	return INTEGER;
-}
-
-token MultiplicationOperatorPatternAction(const char * lexeme) {
-	LogDebug("MultiplicationOperatorPatternAction: '%s'.", lexeme);
-	yylval.token = MUL;
-	return MUL;
-}
-
-token OpenParenthesisPatternAction(const char * lexeme) {
-	LogDebug("OpenParenthesisPatternAction: '%s'.", lexeme);
-	yylval.token = OPEN_PARENTHESIS;
-	return OPEN_PARENTHESIS;
-}
-
-token SubtractionOperatorPatternAction(const char * lexeme) {
-	LogDebug("SubtractionOperatorPatternAction: '%s'.", lexeme);
-	yylval.token = SUB;
-	return SUB;
-}
+token TeamAction(const char * match){
+	return TEAM;
+}; 
+token OfAction(const char * match){
+	return OF;
+}; 
+token PlayersFormationAction(const char * match){
+	return PLAYERSFORMATION;
+}; 
+token SubsitutesAction(const char * match,int option){
+	if (option == 0)
+		return SUBSTITUTES;
+	return SUBSTITUESNONUM;
+}; 
+token DashAction(const char * match){
+	return DASH;
+}; 
+token ColonAction(const char * match){
+	return COLON;
+}; 
+token ApostropheAction(const char * match){
+	return APOSTROPHE;
+}; 
+token StringAction(const char * match){
+	yylval.string = match;
+	return STRING;
+};
+token NumberAction(const char * match){
+	yylval=atoi(match);
+	return NUMBER;
+};
 
 token UnknownPatternAction(const char * lexeme, const int length) {
 	LogDebug("UnknownPatternAction: '%s' (length = %d).", lexeme, length);

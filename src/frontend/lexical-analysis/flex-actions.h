@@ -24,13 +24,27 @@ void BeginCommentPatternAction();
 void EndCommentPatternAction();
 
 // Patrones terminales del lenguaje diseñado.
-token AdditionOperatorPatternAction(const char * lexeme);
-token CloseParenthesisPatternAction(const char * lexeme);
-token DivisionOperatorPatternAction(const char * lexeme);
-token IntegerPatternAction(const char * lexeme, const int length);
-token MultiplicationOperatorPatternAction(const char * lexeme);
-token OpenParenthesisPatternAction(const char * lexeme);
-token SubtractionOperatorPatternAction(const char * lexeme);
+token StartAction(const char * match); 
+token EndAction(const char * match);           
+token FormationAction(const char * match); 
+token FormationNumberAction(const char * match);
+token LineupAction(const char * match,int option); 
+token LineupAction(const char * match,int option); 
+token MetadataAction(const char * match); 
+token DateAction(const char * match); 
+token ResultAction(const char * match); 
+token TeamAction(const char * match); 
+token OfAction(const char * match); 
+token PlayersFormationActionconst(const char * match); 
+token SubsitutesAction(const char * match,int option); 
+token SubstitutesAction(const char * match,int option); 
+token DashAction(const char * match); 
+token ColonAction(const char * match); 
+token ApostropheAction(const char * match); 
+token StringActionconst(const char * match);
+token NumberAction(const char * match);
+token DateStringAction(const char * match);
+token ResultStringAction(const char * match);
 
 // Patrón desconocido, permite abortar debido a un error de sintaxis.
 token UnknownPatternAction(const char * lexeme, const int length);
