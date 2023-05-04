@@ -16,10 +16,18 @@
 	*/
 
 	// No-terminales (frontend).
-	int program;
-	int expression;
-	int factor;
-	int constant;
+	int initial;
+	int info;
+	int playerInfo;
+	int substitutes;
+	int metadata;
+	int matchDate;
+	int matchResult;
+	int lineup;
+	int lineupNoNum;
+	int playerInfoNoNum;
+	int substitutesNoNum;
+	
 
 	// Terminales.
 	token token;
@@ -52,19 +60,21 @@
 %token <token> OPEN_PARENTHESIS
 %token <token> CLOSE_PARENTHESIS
 %token <integer> INTEGER
+%token <token> STRING
+%token <token> PLAYERS
 
 // Tipos de dato para los no-terminales generados desde Bison.
 %type <initial> initial
 %type <info> info
 %type <playerInfo> playerInfo
-%type <subsitutes> subsitutes
+%type <subsitutes> substitutes
 %type <metadata> metadata
 %type <matchDate> matchDate
 %type <matchResult> matchResult
 %type <lineup> lineup
 %type <lineupNoNum> lineupNoNum
 %type <playerInfoNoNum> playerInfoNoNum
-%type <subsitutesNoNum> subsitutesNoNum 
+%type <subsitutesNoNum> substitutesNoNum 
 
 // El símbolo inicial de la gramatica.
 %start initial
