@@ -40,7 +40,7 @@ token FormationAction(const char * match){
 	return FORMATION;
 }; 
 token FormationNumberAction(const char * match){
-	yylval.string = match;
+	yylval.string = (char*) match;
 	return FORMATIONNUMBER;
 };
 token LineupAction(const char * match,int option){
@@ -60,7 +60,7 @@ token DateAction(const char * match){
 	return DATE;
 }; 
 token DateStringAction(const char * match){
-	yylval.string = match;
+	yylval.string = (char*) match;
 	return DATESTRING;
 }
 token ResultAction(const char * match){
@@ -68,7 +68,7 @@ token ResultAction(const char * match){
 	return RESULT;
 }; 
 token ResultStringAction(const char * match){
-	yylval.string = match;
+	yylval.string = (char*) match;
 	return RESULTSTRING;
 }
 token TeamAction(const char * match){
@@ -104,7 +104,7 @@ token ApostropheAction(const char * match){
 	return APOSTROPHE;
 }; 
 token StringAction(const char * match){
-	yylval.string = match;
+	yylval.string = (char*) match;
 	return STRING;
 };
 token NumberAction(const char * match){
