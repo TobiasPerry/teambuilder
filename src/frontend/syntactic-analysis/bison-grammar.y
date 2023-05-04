@@ -33,7 +33,7 @@
 
 	// Terminales.
 	token token;
-	int integer;
+	int number;
 	char* string;
 }
 
