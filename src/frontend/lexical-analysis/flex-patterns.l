@@ -25,7 +25,7 @@ string                  [A-Za-z ]+
 
 "/*"										                { BEGIN(COMMENT); BeginCommentPatternAction(); }
 <COMMENT>.									                { ; }
-<COMMENT>{endline}							                { ; }
+<COMMENT>{whitespaceOrEndline}							                { ; }
 <COMMENT>"*/"								                { EndCommentPatternAction(); BEGIN(INITIAL); }
 
 
