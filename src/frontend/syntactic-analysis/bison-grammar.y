@@ -67,14 +67,14 @@
 %type <initial> initial
 %type <info> info
 %type <playerInfo> playerInfo
-%type <subsitutes> substitutes
+%type <substitutes> substitutes
 %type <metadata> metadata
 %type <matchDate> matchDate
 %type <matchResult> matchResult
 %type <lineup> lineup
 %type <lineupNoNum> lineupNoNum
 %type <playerInfoNoNum> playerInfoNoNum
-%type <subsitutesNoNum> substitutesNoNum 
+%type <substitutesNoNum> substitutesNoNum 
 
 // El símbolo inicial de la gramatica.
 %start initial
@@ -95,8 +95,11 @@ team: TEAM APOSTROPHE STRING APOSTROPHE OF NUMBER PLAYERS		{ $$ = Return0(); }
 formation: FORMATION FORMATIONNUMBER							{ $$ = Return0(); }
 	;
 
-lineup: LINEUP playerInfo subsitutes							{ $$ = Return0(); }
+lineup: LINEUP playerInfo substitutes							{ $$ = Return0(); }
 	;
+
+lineupNoNum: LINEUPNONUM playerInfoNoNum substitutesNoNum 			{ $$ = Return0();}
+	;	
 
 playerInfo: NUMBER COLON APOSTROPHE STRING APOSTROPHE playerInfo	{ $$ = Return0(); }
 	| NUMBER COLON APOSTROPHE STRING APOSTROPHE						{ $$ = Return0(); }
