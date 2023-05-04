@@ -77,6 +77,8 @@
 %type <lineupNoNum> lineupNoNum
 %type <playerInfoNoNum> playerInfoNoNum
 %type <substitutesNoNum> substitutesNoNum 
+%type <formation> formation
+%type <team> team
 
 // El símbolo inicial de la gramatica.
 %start initial
