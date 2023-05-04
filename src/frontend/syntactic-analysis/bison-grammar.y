@@ -54,6 +54,7 @@
 %token <integer> INTEGER
 
 // Tipos de dato para los no-terminales generados desde Bison.
+%type <initial> initial
 %type <info> info
 %type <playerInfo> playerInfo
 %type <subsitutes> subsitutes
@@ -66,7 +67,7 @@
 %type <subsitutesNoNum> subsitutesNoNum 
 
 // El símbolo inicial de la gramatica.
-%start program
+%start initial
 
 %%
 
