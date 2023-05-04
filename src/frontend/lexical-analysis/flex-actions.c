@@ -27,13 +27,16 @@ void EndCommentPatternAction() {
 }
 
 token StartAction(const char * match){
+	yylval.token=START;
 	return START;
 }
 
 token EndAction(const char * match){
+	yylval.token = END;
 	return END;
 };           
 token FormationAction(const char * match){
+	yylval.token = FORMATION;
 	return FORMATION;
 }; 
 token FormationNumberAction(const char * match){
@@ -41,14 +44,19 @@ token FormationNumberAction(const char * match){
 	return FORMATIONNUMBER;
 };
 token LineupAction(const char * match,int option){
-	if (option == 0)
+	if (option == 0){
+		yylval.token = LINEUP;
 		return LINEUP;
+	}
+	yylval.token = LINEUPNONUM;
 	return LINEUPNONUM;
 }; 
 token MetadataAction(const char * match){
+	yylval.token = METADATA;
 	return METADATA;
 }; 
 token DateAction(const char * match){
+	yylval.token = DATE;
 	return DATE;
 }; 
 token DateStringAction(const char * match){
@@ -56,6 +64,7 @@ token DateStringAction(const char * match){
 	return DATESTRING;
 }
 token ResultAction(const char * match){
+	yylval.token = RESULT;
 	return RESULT;
 }; 
 token ResultStringAction(const char * match){
@@ -63,26 +72,35 @@ token ResultStringAction(const char * match){
 	return RESULTSTRING;
 }
 token TeamAction(const char * match){
+	yylval.token = TEAM;
 	return TEAM;
 }; 
 token OfAction(const char * match){
+	yylval.token = OF;
 	return OF;
 }; 
 token PlayersFormationAction(const char * match){
+	yylval.token = PLAYERSFORMATION;
 	return PLAYERSFORMATION;
 }; 
 token SubsitutesAction(const char * match,int option){
-	if (option == 0)
+	if (option == 0){
+		yylval.token = SUBSTITUTES;
 		return SUBSTITUTES;
-	return SUBSTITUESNONUM;
+	}
+	yylval.token = SUBSTITUTESNONUM;
+	return SUBSTITUTESNONUM;
 }; 
 token DashAction(const char * match){
+	yylval.token = DASH;
 	return DASH;
 }; 
 token ColonAction(const char * match){
+	yylval.token = COLON;
 	return COLON;
 }; 
 token ApostropheAction(const char * match){
+	yylval.token = APOSTROPHE;
 	return APOSTROPHE;
 }; 
 token StringAction(const char * match){
@@ -90,7 +108,7 @@ token StringAction(const char * match){
 	return STRING;
 };
 token NumberAction(const char * match){
-	yylval=atoi(match);
+	yylval.number=atoi(match);
 	return NUMBER;
 };
 

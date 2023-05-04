@@ -49,7 +49,7 @@ string                  [A-Za-z ]+
 ":"                                                         { return ColonAction(yytext); }
 "'"                                                         { return ApostropheAction(yytext); }
 {string}                                                    { return StringAction(yytext);}
-{number}                                                    { return NumberAction(yytext);}   //VAMOS A TENER QUE USAR EL YYVAL
+{number}                                                    { return NumberAction(yytext);}   
 
 {whitespaceOrEndline}						                { IgnoredPatternAction(yytext, yyleng); }
 
