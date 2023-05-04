@@ -88,8 +88,8 @@
 initial: START info END											{ $$ = InitialAction($2); }
 	;
 
-info: team formation lineup metadata							{ $$ = Return0(); }
-	| team formation lineupNoNum metadata						{ $$ = Return0(); }
+info: team formation lineup substitutes metadata							{ $$ = Return0(); }
+	| team formation lineupNoNum substitutesNoNum metadata						{ $$ = Return0(); }
 	| %empty													{ $$ = Return0(); }
 	;
 
@@ -99,11 +99,10 @@ team: TEAM APOSTROPHE STRING APOSTROPHE OF NUMBER PLAYERS		{ $$ = Return0(); }
 formation: FORMATION FORMATIONNUMBER							{ $$ = Return0(); }
 	;
 
-lineup: LINEUP playerInfo substitutes							{ $$ = Return0(); }
-	| LINEUP playerInfo											{ $$ = Return0(); }
+lineup: LINEUP playerInfo							{ $$ = Return0(); }
 	;
 
-lineupNoNum: LINEUPNONUM playerInfoNoNum substitutesNoNum 			{ $$ = Return0();}
+lineupNoNum: LINEUPNONUM playerInfoNoNum 			{ $$ = Return0();}
 	| LINEUPNONUM playerInfoNoNum									{ $$ = Return0(); }	
 	;	
 
