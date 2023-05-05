@@ -5,6 +5,12 @@ Un compilador para crear formaciones de equipos de futbol.
 Basado en el compilador "Flex-Bison-Compiler" de Agustin Golmar:
 https://github.com/agustin-golmar/Flex-Bison-Compiler
 
+## Grupo
+* Manuel Esteban Dithurbide (62057)
+* Martin Hecht (62041)
+* Tomas Camilo Gay Bare (62103)
+* Tobias Perry (62064)
+
 ## Sintaxis
 
 * START
