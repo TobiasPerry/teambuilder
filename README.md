@@ -1,8 +1,86 @@
-[![✗](https://img.shields.io/badge/Release-v0.2.0-ffb600.svg?style=for-the-badge)](https://github.com/agustin-golmar/Flex-Bison-Compiler/releases)
+# Teambuilder
 
-# Compilador Flex/Bison
+Un compilador para crear formaciones de equipos de futbol. 
 
-Un compilador vacío de ejemplo construido con Flex y Bison.
+Basado en el compilador "Flex-Bison-Compiler" de Agustin Golmar:
+https://github.com/agustin-golmar/Flex-Bison-Compiler
+
+## Sintaxis
+
+* START
+* TEAM 'teamName'[opcional] OF playerAmount PLAYERS
+* FORMATION
+* formation [pueden ser mas de una]
+* Tag LINEUP/LINEUPNONUM
+* number: 'player name' [en caso de LINEUPNONUM solo se requiere nombre del jugador] {lista}
+* SUBSTITUTES/SUBSITUTESNONUM [debe coincidir con el tipo de LINEUP] [opcional]
+* number: 'player name' {lista}
+* METADATA [opcional]
+* DATE: 'fecha' [opcional] RESULT 'result' [opcional]
+* END
+
+Obs: los whitespaces son ignorados
+
+Algunos casos de uso (puede encontrar mas en la carpeta de tests): 
+
+```
+START
+TEAM 'The Red Devils' OF 5 PLAYERS
+FORMATION
+2-1-1
+LINEUP
+1: 'El Manco'
+2: 'Alves Daniel'
+3: 'Pedrito Lopez'
+4: 'Gaston Perez'
+5: 'Pepito Radiactivo'
+SUBSTITUTES
+6: 'La Maquina'
+7: 'Pedrito'
+METADATA
+DATE:'07-07-2001' RESULT:'5-0'
+END
+```
+
+```
+START
+TEAM OF 5 PLAYERS
+FORMATION
+2-1-1
+LINEUPNONUM
+'El Manco'
+'Alves Daniel'
+'Pedrito Lopez'
+'Gaston Perez'
+'Pepito Radiactivo'
+SUBSTITUTESNONUM
+'La Maquina'
+'Pedrito'
+END
+```
+
+
+## Tests
+
+Accept:
+* 01: Formacion fubol 5
+* 02: Formacion futbol 8
+* 03: Formacion futbol 11
+* 04: Formacion sin suplenetes
+* 05: Formacion sin fecha ni nombre de equipo
+* 06: Formacion sin metadatos
+* 07: Formacion sin numeracion
+* 08: Doble formacion
+
+Reject:
+* 01: No cumple formato de formacion. (Ej formacion correcta: 4-4-2)
+* 02: Caracteres invalidos en las variables
+* 03: Formato de fecha incorrecto
+* 04: Jugadores sin numerar cuando se requiere numeracion
+* 05: Campo de sustitutos presente pero vacio
+* 06: Campo de titulares y sustitutos con opcion de numeracion alternada
+* 07: Campos de titulares vacio
+* 08: Formato de resultado invalido
 
 ## Requerimientos
 
