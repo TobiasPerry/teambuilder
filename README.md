@@ -122,7 +122,22 @@ Luego se deberá abrir la solución generada `bin\Compiler.sln` con el IDE _Micr
 Para compilar un programa, primero cree un archivo vacío denominado `program` (o el nombre que desee), con el siguiente contenido:
 
 ```
-123123 + 123 - 2 * (454 + 890 / 89)
+START
+TEAM 'The Red Devils' OF 5 PLAYERS
+FORMATION
+2-1-1
+LINEUP
+1: 'El Manco'
+2: 'Alves Daniel'
+3: 'Pedrito Lopez'
+4: 'Gaston Perez'
+5: 'Pepito Radiactivo'
+SUBSTITUTES
+6: 'La Maquina'
+7: 'Pedrito'
+METADATA
+DATE:'07-07-2001' RESULT:'5-0'
+END
 ```
 
 Luego, ejecute el compilador desde el directorio raíz del proyecto, o desde cualquier otro lugar indicando el path hacia el script `start.sh` y pasando por parámetro el path hacia el programa a compilar:
@@ -136,8 +151,6 @@ En Windows:
 ```bash
 user@machine:path/ $ script\start.bat program
 ```
-
-Debería obtener el resultado correcto de evaluar el programa anterior: `122318`.
 
 ## Testing
 
