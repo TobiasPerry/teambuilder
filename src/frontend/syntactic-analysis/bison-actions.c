@@ -138,6 +138,13 @@ PlayerInfoNode * PlayerInfoAction(int number, char * name, PlayerInfoNode * next
 	return playerInfo;
 }
 
+PlayerInfoNode * PlayerInfoFinalAction(int number, char * name){
+	PlayerInfoNode * playerInfo = (PlayerInfoNode *) calloc(1, sizeof(PlayerInfoNode));
+	playerInfo->playerNumber = number;
+	playerInfo->playerName = name;
+	return playerInfo;
+}
+
 PlayerInfoNoNumNode * PlayerInfoNoNumAction(char * name, PlayerInfoNoNumNode * nextPlayerInfoNoNum){
 	PlayerInfoNoNumNode * playerInfoNoNum = (PlayerInfoNoNumNode *) calloc(1, sizeof(PlayerInfoNoNumNode));
 	playerInfoNoNum->playerName = name;
