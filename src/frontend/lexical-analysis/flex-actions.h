@@ -50,4 +50,9 @@ token UnknownPatternAction(const char * lexeme, const int length);
 // Regla que no hace nada, permite ignorar parte de la entrada.
 void IgnoredPatternAction(const char * lexeme, const int length);
 
+enum NumOption{
+    NUM,
+    NONUM
+};
+
 #endif
