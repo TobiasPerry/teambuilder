@@ -53,6 +53,10 @@ InitialNode * InitialAction(InfoNode * info){
 	return initial;
 }
 
+int Return0(){
+	return 0;
+}
+
 InfoNode * InfoAction(TeamNode * team, FormationNode * formation, LineupNode * lineup, MetadataNode * metadata){
 	InfoNode * info = (InfoNode *) calloc(1, sizeof(InfoNode));
 	info->team = team;
@@ -131,51 +135,62 @@ PlayerInfoNode * PlayerInfoAction(int number, char * name, PlayerInfoNode * next
 	return playerInfo;
 }
 
-
-int Return0(){
-	return 0;
+PlayerInfoNoNumNode * PlayerInfoNoNumAction(char * name, PlayerInfoNoNumNode * nextPlayerInfoNoNum){
+	PlayerInfoNoNumNode * playerInfoNoNum = (PlayerInfoNoNumNode *) calloc(1, sizeof(PlayerInfoNoNumNode));
+	playerInfoNoNum->playerName = name;
+	playerInfoNoNum->nextPlayerInfoNoNum = nextPlayerInfoNoNum;
+	return playerInfoNoNum;
 }
 
+PlayerInfoNoNumNode * PlayerInfoNoNumFinalAction(char * name){
+	PlayerInfoNoNumNode * playerInfoNoNum = (PlayerInfoNoNumNode *) calloc(1, sizeof(PlayerInfoNoNumNode));
+	playerInfoNoNum->playerName = name;
+	return playerInfoNoNum;
+}
 
+SubstitutesNode * SubstitutesAction(PlayerInfoNode * playerInfo){
+	SubstitutesNode * substitutes = (SubstitutesNode *) calloc(1, sizeof(SubstitutesNode));
+	substitutes->substituteName = playerInfo->playerName;
+	substitutes->substituteNumber = playerInfo->playerNumber;
+	substitutes->nextSubstitute = playerInfo->nextPlayerInfo;
+	return substitutes;
+}
 
+SubstitutesNoNumNode * SubstitutesNoNumAction(PlayerInfoNoNumNode * playerInfoNoNum){
+	SubstitutesNoNumNode * substitutesNoNum = (SubstitutesNoNumNode *) calloc(1, sizeof(SubstitutesNoNumNode));
+	substitutesNoNum->substituteName = playerInfoNoNum->playerName;
+	substitutesNoNum->nextSubstitute = playerInfoNoNum->nextPlayerInfoNoNum;
+	return substitutesNoNum;
+}
 
+MetadataNode * MetadataCompleteAction(MatchDateNode * matchDate, MatchResultNode * matchResult){
+	MetadataNode * metadata = (MetadataNode *) calloc(1, sizeof(MetadataNode));
+	metadata->matchDate = matchDate;
+	metadata->matchResult = matchResult;
+	return metadata;
+}
 
-// int AdditionExpressionGrammarAction(const int leftValue, const int rightValue) {
-// 	LogDebug("\tAdditionExpressionGrammarAction(%d, %d)", leftValue, rightValue);
-// 	return Add(leftValue, rightValue);
-// }
+MetadataNode * MetadataDateAction(MatchDateNode * matchDate){
+	MetadataNode * metadata = (MetadataNode *) calloc(1, sizeof(MetadataNode));
+	metadata->matchDate = matchDate;
+	return metadata;
+}
 
-// int SubtractionExpressionGrammarAction(const int leftValue, const int rightValue) {
-// 	LogDebug("\tSubtractionExpressionGrammarAction(%d, %d)", leftValue, rightValue);
-// 	return Subtract(leftValue, rightValue);
-// }
+MetadataNode * MetadataResultAction(MatchResultNode * matchResult){
+	MetadataNode * metadata = (MetadataNode *) calloc(1, sizeof(MetadataNode));
+	metadata->matchResult = matchResult;
+	return metadata;
+}
 
-// int MultiplicationExpressionGrammarAction(const int leftValue, const int rightValue) {
-// 	LogDebug("\tMultiplicationExpressionGrammarAction(%d, %d)", leftValue, rightValue);
-// 	return Multiply(leftValue, rightValue);
-// }
+MatchDateNode * MatchDateAction(char * date){
+	MatchDateNode * matchDate = (MatchDateNode *) calloc(1, sizeof(MatchDateNode));
+	matchDate->date = date;
+	return matchDate;
+}
 
-// int DivisionExpressionGrammarAction(const int leftValue, const int rightValue) {
-// 	LogDebug("\tDivisionExpressionGrammarAction(%d, %d)", leftValue, rightValue);
-// 	return Divide(leftValue, rightValue);
-// }
+MatchResultNode * MatchResultAction(char * result){
+	MatchResultNode * matchResult = (MatchResultNode *) calloc(1, sizeof(MatchResultNode));
+	matchResult->result = result;
+	return matchResult;
+}
 
-// int FactorExpressionGrammarAction(const int value) {
-// 	LogDebug("\tFactorExpressionGrammarAction(%d)", value);
-// 	return value;
-// }
-
-// int ExpressionFactorGrammarAction(const int value) {
-// 	LogDebug("\tExpressionFactorGrammarAction(%d)", value);
-// 	return value;
-// }
-
-// int ConstantFactorGrammarAction(const int value) {
-// 	LogDebug("\tConstantFactorGrammarAction(%d)", value);
-// 	return value;
-// }
-
-// int IntegerConstantGrammarAction(const int value) {
-// 	LogDebug("\tIntegerConstantGrammarAction(%d)", value);
-// 	return value;
-//}
