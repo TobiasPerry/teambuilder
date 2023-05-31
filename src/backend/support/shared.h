@@ -46,10 +46,10 @@ typedef struct {
 	boolean succeed;
 
 	// Indica el resultado de la compilación (para la calculadora).
-	int result;
+	InitialNode * result;
 
 	// El nodo raíz del AST (se usará cuando se implemente el backend).
-	Program * program;
+	InitialNode * initial;
 
 	// Agregar lo que sea necesario para el compilador.
 	// Agregar una pila para manipular scopes.
