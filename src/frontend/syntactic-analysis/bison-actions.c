@@ -170,18 +170,21 @@ MetadataNode * MetadataCompleteAction(MatchDateNode * matchDate, MatchResultNode
 	MetadataNode * metadata = (MetadataNode *) calloc(1, sizeof(MetadataNode));
 	metadata->matchDate = matchDate;
 	metadata->matchResult = matchResult;
+	metadata->metadataType = COMPLETE;
 	return metadata;
 }
 
 MetadataNode * MetadataDateAction(MatchDateNode * matchDate){
 	MetadataNode * metadata = (MetadataNode *) calloc(1, sizeof(MetadataNode));
 	metadata->matchDate = matchDate;
+	metadata->metadataType = DATE;
 	return metadata;
 }
 
 MetadataNode * MetadataResultAction(MatchResultNode * matchResult){
 	MetadataNode * metadata = (MetadataNode *) calloc(1, sizeof(MetadataNode));
 	metadata->matchResult = matchResult;
+	metadata->metadataType = RESULT;
 	return metadata;
 }
 

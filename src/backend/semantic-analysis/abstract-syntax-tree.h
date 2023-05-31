@@ -32,6 +32,14 @@ typedef enum{
 	NOFINAL
 }FormationNumberType;
 
+typedef enum {
+	DATE,
+	RESULT,
+	COMPLETE,
+	EMPTY
+} MetadataType;
+
+
 struct InitialNode{
 	InfoNode * info;
 };
