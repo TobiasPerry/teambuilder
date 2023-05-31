@@ -128,7 +128,7 @@ metadata: METADATA matchDate matchResult						{ $$ = Return0(); }
 	|   %empty												    { $$ = Return0(); }
 	;
 
-matchDate: DATE COLON APOSTROPHE DATESTRING APOSTROPHE			{ $$ = Return0(); }
+matchDate: DATE COLON DATESTRING			{ $$ = Return0(); }
 	;
 
 matchResult: RESULT COLON APOSTROPHE RESULTSTRING APOSTROPHE	{ $$ = Return0(); }
