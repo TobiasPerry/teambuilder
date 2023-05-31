@@ -106,13 +106,6 @@ struct MetadataNode{
 	MatchResultNode * matchResult;
 };
 
-enum MetadataType{
-	DATE,
-	RESULT,
-	COMPLETE,
-	EMPTY
-};
-
 struct MatchDateNode{
 	char * date;
 };
