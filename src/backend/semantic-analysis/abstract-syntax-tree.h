@@ -1,56 +1,92 @@
 #ifndef ABSTRACT_SYNTAX_TREE_HEADER
 #define ABSTRACT_SYNTAX_TREE_HEADER
 
-/**
-* Se realiza este tipo de definiciones cuando el tipo de dato debe
-* auto-referenciarse, como es el caso de una "Expression", que está compuesta
-* de otras 2 expresiones.
-*/
-typedef struct Expression Expression;
+struct InitialNode{
+	InfoNode * info;
+}
 
-/**
-* Para cada no-terminal se define una nueva estructura que representa su tipo
-* de dato y, por lo tanto, su nodo en el AST (Árbol de Sintaxis Abstracta).
-*/
-typedef struct {
-	int value;
-} Constant;
+struct InfoNode{
+	NumerationType numeration;
+	TeamNode * team;
+	FormationNode * formation;
+	LineupNode * lineup;
+	MetadataNode * metadata;
+}
 
-/**
-* En caso de que un no-terminal ("Factor" en este caso), posea más de una
-* regla de producción asociada, se crea además de la estructura un enumerado
-* que identitifque cada reducción posible (cada regla de producción). Luego,
-* se agrega una instancia de este enumerado dentro del nodo del no-terminal.
-*
-* De este modo, al recorrer el AST, es posible determinar qué nodos hijos
-* posee según el valor de este enumerado.
-*/
-typedef enum {
-	EXPRESSION,
-	CONSTANT
-} FactorType;
+enum NumerationType{
+	NUM,
+	NONUM
+}
 
-typedef struct {
-	FactorType type;
-	Expression * expression;
-} Factor;
+struct TeamNode{
+	TeamType teamType;
+	char * teamName;
+	int teamNumber;
+}
 
-typedef enum {
-	ADDITION,
-	SUBTRACTION,
-	MULTIPLICATION,
-	DIVISION,
-	FACTOR
-} ExpressionType;
+enum TeamType{
+	TEAMNAME,
+	NOTEAMNAME
+}
 
-struct Expression {
-	ExpressionType type;
-	Expression * leftExpression;
-	Expression * rightExpression;
-};
+struct FormationNode{
+	FormationNumberNode * formationNumber;
+}
 
-typedef struct {
-	Expression * expression;
-} Program;
+struct FormationNumberNode{
+	FormationNumberType formationNumberType;
+	char * formationNumber;
+	FormationNumberNode * nextFormationNumber;
+}
+
+enum FormationNumberType{
+	FINAL,
+	NOFINAL
+}
+
+struct LineupNode{
+	PlayerInfoNode * playerInfo;
+	SubstitutesNode * substitutes;
+}
+
+struct PlayerInfoNode{
+	char * playerName;
+	int playerNumber;
+	PlayerInfoNode * nextPlayerInfo;
+}
+
+struct SubstitutesNode{
+	char * substituteName;
+	int substituteNumber;
+	SubstitutesNode * nextSubstitute;
+}
+
+struct LineupNoNumNode{
+	PlayerInfoNoNumNode * playerInfoNoNum;
+	SubstitutesNoNumNode * substitutesNoNum;
+}
+
+struct PlayerInfoNoNumNode{
+	char * playerName;
+	PlayerInfoNoNumNode * nextPlayerInfoNoNum;
+}
+
+struct SubstitutesNoNumNode{
+	char * substituteName;
+	SubstitutesNoNumNode * nextSubstituteNoNum;
+}
+
+struct MetadataNode{
+	MetadataType metadataType;
+	MatchDateNode * matchDate;
+	MatchResultNode * matchResult;
+}
+
+enum MetadataType{
+	DATE,
+	RESULT,
+	COMPLETE,
+	EMPTY
+}
 
 #endif
