@@ -33,8 +33,8 @@ typedef enum{
 }FormationNumberType;
 
 typedef enum {
-	DATE,
-	RESULT,
+	HASDATE,
+	HASRESULT,
 	COMPLETE,
 	EMPTY
 } MetadataType;
