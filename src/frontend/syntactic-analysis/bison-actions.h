@@ -3,7 +3,9 @@
 
 #include "../../backend/support/shared.h"
 #include "../../backend/semantic-analysis/abstract-syntax-tree.h"
-
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 /**
  * Se definen las acciones a ejecutar sobre cada regla de producción de la
  * gramática. El objetivo de cada acción debe ser el de construir el nodo
