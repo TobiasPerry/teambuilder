@@ -51,7 +51,8 @@ InitialNode * InitialAction(InfoNode * info){
 	InitalNode * initial = (InitialNode *) calloc(1, sizeof(InitialNode));
 	initial->info = info;
 	state.succeed = true;
-	state.result = initial;
+	state.result = 15;
+	state.program = initial;
 	return initial;
 }
 
