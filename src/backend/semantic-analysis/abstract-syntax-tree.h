@@ -42,7 +42,7 @@ typedef enum {
 
 struct InitialNode{
 	InfoNode * info;
-}
+};
 
 struct InfoNode{
 	NumerationType numeration;
@@ -50,75 +50,75 @@ struct InfoNode{
 	FormationNode * formation;
 	LineupNode * lineup;
 	MetadataNode * metadata;
-}
+};
 
 struct TeamNode{
 	TeamType teamType;
 	char * teamName;
 	int teamNumber;
-}
+};
 
 struct FormationNode{
 	FormationNumberNode * formationNumber;
-}
+};
 
 struct FormationNumberNode{
 	FormationNumberType formationNumberType;
 	char * formationNumber;
 	FormationNumberNode * nextFormationNumber;
-}
+};
 
 struct LineupNode{
 	PlayerInfoNode * playerInfo;
 	SubstitutesNode * substitutes;
-}
+};
 
 struct PlayerInfoNode{
 	char * playerName;
 	int playerNumber;
 	PlayerInfoNode * nextPlayerInfo;
-}
+};
 
 struct SubstitutesNode{
 	char * substituteName;
 	int substituteNumber;
 	SubstitutesNode * nextSubstitute;
-}
+};
 
 struct LineupNoNumNode{
 	PlayerInfoNoNumNode * playerInfoNoNum;
 	SubstitutesNoNumNode * substitutesNoNum;
-}
+};
 
 struct PlayerInfoNoNumNode{
 	char * playerName;
 	PlayerInfoNoNumNode * nextPlayerInfoNoNum;
-}
+};
 
 struct SubstitutesNoNumNode{
 	char * substituteName;
 	SubstitutesNoNumNode * nextSubstituteNoNum;
-}
+};
 
 struct MetadataNode{
 	MetadataType metadataType;
 	MatchDateNode * matchDate;
 	MatchResultNode * matchResult;
-}
+};
 
 enum MetadataType{
 	DATE,
 	RESULT,
 	COMPLETE,
 	EMPTY
-}
+};
 
 struct MatchDateNode{
 	char * date;
-}
+};
 
 struct MatchResultNode{
 	char * result;
-}
+};
 
 #endif

@@ -14,7 +14,7 @@
 // Programa.
 InitialNode * InitialAction(InfoNode * info);
 InfoNode * InfoAction(TeamNode * team, FormationNode * formation, LineupNode * lineup, MetadataNode * metadata);
-InfoNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata)
+InfoNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata);
 TeamNode * TeamNameAction(char * teamName, int players);
 TeamNode * TeamNoNameAction(int players);
 FormationNode * FormationAction(FormationNumberNode * formationNumber);
