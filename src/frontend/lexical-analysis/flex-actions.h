@@ -57,8 +57,8 @@ token UnknownPatternAction(const char * lexeme, const int length);
 void IgnoredPatternAction(const char * lexeme, const int length);
 
 enum NumOption{
-    NUM,
-    NONUM
+    HASNUM,
+    HASNONUM
 };
 
 #endif
