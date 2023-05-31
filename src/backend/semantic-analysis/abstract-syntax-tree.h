@@ -6,28 +6,38 @@ typedef struct PlayerInfoNode PlayerInfoNode;
 typedef struct SubstitutesNode SubstitutesNode;
 typedef struct PlayerInfoNoNumNode PlayerInfoNoNumNode;
 typedef struct SubstitutesNoNumNode SubstitutesNoNumNode;
+typedef struct LineupNode LineupNode;
+typedef struct LineupNoNumNode LineupNoNumNode;
+typedef struct InfoNode InfoNode;
+typedef struct TeamNode TeamNode;
+typedef struct FormationNode FormationNode;
+typedef struct MetadataNode MetadataNode;
+typedef struct MatchDateNode MatchDateNode;
+typedef struct MatchResultNode MatchResultNode;
+typedef struct InitialNode InitialNode;
 
-enum NumerationType{
+
+typedef enum{
 	NUM,
 	NONUM
-}
+}NumerationType;
 
-enum TeamType{
+typedef enum {
 	TEAMNAME,
 	NOTEAMNAME
-}
+}TeamType;
 
-enum FormationNumberType{
+typedef enum{
 	FINAL,
 	NOFINAL
-}
+}FormationNumberType;
 
-enum MetadataType{
+typedef enum {
 	DATE,
 	RESULT,
 	COMPLETE,
 	EMPTY
-}
+} MetadataType;
 
 
 struct InitialNode{
