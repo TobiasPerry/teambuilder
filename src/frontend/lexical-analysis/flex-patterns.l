@@ -19,8 +19,9 @@
 
 /* Patrones reutilizables. */
 number			        [1-9][0-9]*
-whitespaceOrEndline		[ \f\n\r\t\v]
+whitespaceOrEndline		[\f\n\r\t\v]
 endline			        [\n]
+whiteSpace              [ ]
 
 %%
 
@@ -28,6 +29,8 @@ endline			        [\n]
 <COMMENT>.									                { ; }
 <COMMENT>{endline}							                { ; }
 <COMMENT>"*/"								                { EndCommentPatternAction(); BEGIN(INITIAL); }
+
+{whitespaceOrEndline}						                { IgnoredPatternAction(yytext, yyleng); }
 
 "START"                                                     { return StartAction(yytext); }
 "END"                                                       { return EndAction(yytext); }           
@@ -54,7 +57,7 @@ endline			        [\n]
 <STRING>{endline}                                           { return StringAction(yytext); }
 <STRING>"\'"                                                { EndStringPatternAction();  BEGIN(INITIAL);}
 
-{whitespaceOrEndline}						                { IgnoredPatternAction(yytext, yyleng); }
+{whiteSpace}                                                { IgnoredPatternAction(yytext, yyleng); }
 
 .											                { return UnknownPatternAction(yytext, yyleng); }
 
