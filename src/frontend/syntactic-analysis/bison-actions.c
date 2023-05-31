@@ -70,7 +70,7 @@ InfoNode * InfoAction(TeamNode * team, FormationNode * formation, LineupNode * l
 	return info;
 }
 
-InfoNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata){
+InfoNoNumNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata){
 	InfoNode * info = (InfoNode *) calloc(1, sizeof(InfoNode));
 	info->team = team;
 	info->formation = formation;
@@ -102,18 +102,18 @@ FormationNode * FormationAction(FormationNumberNode * formationNumber){
 }
 
 FormationNumberNode * FormationNumberAction(char * formationNumber, FormationNumberNode * nextFormationNumber){
-	FormationNumberNode * formationNumber = (FormationNumberNode *) calloc(1, sizeof(FormationNumberNode));
-	formationNumber->formationNumber = formationNumber;
-	formationNumber->nextFormationNumber = nextFormationNumber;
-	formationNumber->formationNumberType = NOFINAL;
+	FormationNumberNode * formationNumber2 = (FormationNumberNode *) calloc(1, sizeof(FormationNumberNode));
+	formationNumber2->formationNumber = formationNumber;
+	formationNumber2->nextFormationNumber = nextFormationNumber;
+	formationNumber2->formationNumberType = NOFINAL;
 	return formationNumber;
 }
 
 FormationNumberNode * FormationNumberFinalAction(char * formationNumber){
-	FormationNumberNode * formationNumber = (FormationNumberNode *) calloc(1, sizeof(FormationNumberNode));
-	formationNumber->formationNumber = formationNumber;
-	formationNumber->formationNumberType = FINAL;
-	return formationNumber;
+	FormationNumberNode * formationNumber2 = (FormationNumberNode *) calloc(1, sizeof(FormationNumberNode));
+	formationNumber2->formationNumber = formationNumber;
+	formationNumber2->formationNumberType = FINAL;
+	return formationNumber2;
 }
 
 LineupNode * LineupAction(PlayerInfoNode * playerInfo, SubstitutesNode * substitutes){
@@ -162,7 +162,7 @@ SubstitutesNode * SubstitutesAction(PlayerInfoNode * playerInfo){
 SubstitutesNoNumNode * SubstitutesNoNumAction(PlayerInfoNoNumNode * playerInfoNoNum){
 	SubstitutesNoNumNode * substitutesNoNum = (SubstitutesNoNumNode *) calloc(1, sizeof(SubstitutesNoNumNode));
 	substitutesNoNum->substituteName = playerInfoNoNum->playerName;
-	substitutesNoNum->nextSubstitute = playerInfoNoNum->nextPlayerInfoNoNum;
+	substitutesNoNum->nextSubstituteNoNum = playerInfoNoNum->nextPlayerInfoNoNum;
 	return substitutesNoNum;
 }
 
