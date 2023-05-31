@@ -86,7 +86,7 @@ initial: START info END											{ $$ = InitialAction($2); }
 	;
 
 info: team formation lineup metadata							{ $$ = InfoAction($1, $2, $3, $4 ); }
-	| team formation lineupNoNum metadata						{ $$ =InfoAction($1, $2, $3, $4 ); }
+	| team formation lineupNoNum metadata						{ $$ = InfoNoNumAction($1, $2, $3, $4 ); }
 	| %empty													{ $$ = Return0(); }
 	;
 
@@ -96,8 +96,8 @@ team: TEAM STRING OF NUMBER PLAYERS		{ $$ = TeamNameAction($2, $4 ); }
 
 formation: FORMATION formationNumber							{ $$ = FormationAction($2); }
 	;
-formationNumber: FORMATIONNUMBER formationNumber				{ $$ = FormationNumberAction($2); }
-	| FORMATIONNUMBER											{ $$ = FormationNumberFinalACtion(); }
+formationNumber: FORMATIONNUMBER formationNumber				{ $$ = FormationNumberAction($1,$2); }
+	| FORMATIONNUMBER											{ $$ = FormationNumberFinalAction($1); }
 	;
 
 lineup: LINEUP playerInfo substitutes							{ $$ = LineupAction($2, $3); }

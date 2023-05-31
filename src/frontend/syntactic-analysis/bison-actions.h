@@ -12,7 +12,32 @@
  */
 
 // Programa.
-int InitialAction(const int value);
+InitialNode * InitialAction(InfoNode * info);
+InfoNode * InfoAction(TeamNode * team, FormationNode * formation, LineupNode * lineup, MetadataNode * metadata);
+InfoNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata)
+TeamNode * TeamNameAction(char * teamName, int players);
+TeamNode * TeamNoNameAction(int players);
+FormationNode * FormationAction(FormationNumberNode * formationNumber);
+FormationNumberNode * FormationNumberAction(char * formationNumber, FormationNumberNode * nextFormationNumber);
+FormationNumberNode * FormationNumberFinalAction(char * formationNumber);
+LineupNode * LineupAction( PlayerInfoNode * playerInfo,SubstitutesNode * substitutes);
+LineupNoNumNode * LineupNoNumAction( PlayerInfoNoNumNode * playerInfoNoNum,SubstitutesNoNumNode * substitutesNoNum);
+PlayerInfoNode * PlayerInfoAction(int number, char * name, PlayerInfoNode * nextPlayerInfo);
+PlayerInfoNode * PlayerInfoFinalAction(int number, char * name);
+PlayerInfoNoNumNode * PlayerInfoNoNumAction(char * name, PlayerInfoNoNumNode * nextPlayerInfoNoNum);
+PlayerInfoNoNumNode * PlayerInfoNoNumFinalAction(char * name);
+SubstitutesNode * SubstitutesAction(PlayerInfoNode * playerInfo);
+SubstitutesNoNumNode * SubstitutesNoNumAction(PlayerInfoNoNumNode * playerInfoNoNum);
+MetadataNode * MetadataCompleteAction(MatchDateNode * matchDate, MatchResultNode * matchResult);
+MetadataNode * MetadataDateAction(MatchDateNode * matchDate);
+MetadataNode * MetadataResultAction(MatchResultNode * matchResult);
+MatchDateNode * MatchDateAction(char * date);
+MatchResultNode * MatchResultAction(char * result);
+
+
+
+
+
 int Return0();
 
 // // Expresión.
