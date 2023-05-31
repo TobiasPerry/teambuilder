@@ -1,4 +1,3 @@
-   
 %{
 
 #include "flex-actions.h"
@@ -20,10 +19,17 @@
 /* Patrones reutilizables. */
 number			        [1-9][0-9]*
 whitespaceOrEndline		[\f\n\r\t\v]
+endline			        [\n]
 string                  '[\-A-Za-z ]+'
 white                   [ ]
 
 %%
+
+"/*"										                { BEGIN(COMMENT); BeginCommentPatternAction(); }
+<COMMENT>.									                { ; }
+<COMMENT>{endline}							                { ; }
+<COMMENT>"*/"								                { EndCommentPatternAction(); BEGIN(INITIAL); }
+
 {white}                                                     { IgnoredPatternAction(yytext, yyleng); }
 "START"                                                     { return StartAction(yytext); }
 "END"                                                       { return EndAction(yytext); }           
@@ -31,8 +37,8 @@ white                   [ ]
 "TEAM"                                                      { return TeamAction(yytext); }
 "OF"                                                        { return OfAction(yytext); }
 "PLAYERS"                                                   { return PlayersAction(yytext); }
-"SUBSTITUTES"                                                { return SubstitutesAction(yytext, 0); }
-"SUBSTITUTESNONUM"                                           { return SubstitutesAction(yytext, 1); }
+"SUBSTITUTES"                                               { return SubstitutesAction(yytext, 0); }
+"SUBSTITUTESNONUM"                                          { return SubstitutesAction(yytext, 1); }
 "LINEUPNONUM"                                               { return LineupAction(yytext,1); }
 "LINEUP"                                                    { return LineupAction(yytext,0); }
 "METADATA"                                                  { return MetadataAction(yytext); }

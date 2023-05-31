@@ -54,14 +54,9 @@
 %token <token> OF 
 %token <token> SUBSTITUTES
 %token <token> SUBSTITUTESNONUM
-%token <token> DASH
 %token <token> COLON
 %token <token> APOSTROPHE
 %token <token> NUMBER
-%token <token> YYUNDEF
-%token <token> OPEN_PARENTHESIS
-%token <token> CLOSE_PARENTHESIS
-%token <integer> INTEGER
 %token <token> STRING
 %token <token> PLAYERS
 
