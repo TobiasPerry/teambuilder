@@ -60,7 +60,7 @@ int Return0(){
 	return 0;
 }
 
-InfoNode * InfoAction(TeamNode * team, FormationNode * formation, LineupNode * lineup, MetadataNode * metadata){
+InfoNode * InfoGrammarAction(TeamNode * team, FormationNode * formation, LineupNode * lineup, MetadataNode * metadata){
 	InfoNode * info = (InfoNode *) calloc(1, sizeof(InfoNode));
 	info->team = team;
 	info->formation = formation;
@@ -70,7 +70,7 @@ InfoNode * InfoAction(TeamNode * team, FormationNode * formation, LineupNode * l
 	return info;
 }
 
-InfoNoNumNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata){
+InfoNoNumNode * InfoNoNumGrammarAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata){
 	InfoNoNumNode * info = (InfoNoNumNode *) calloc(1, sizeof(InfoNoNumNode));
 	info->team = team;
 	info->formation = formation;
@@ -80,7 +80,7 @@ InfoNoNumNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, Line
 	return info;
 }
 
-TeamNode * TeamNameAction(char * name, int players){
+TeamNode * TeamNameGrammarAction(char * name, int players){
 	TeamNode * team = (TeamNode *) calloc(1, sizeof(TeamNode));
 	team->teamName = name;
 	team->teamNumber = players;
@@ -88,20 +88,20 @@ TeamNode * TeamNameAction(char * name, int players){
 	return team;
 }
 
-TeamNode * TeamNoNameAction(int players){
+TeamNode * TeamNoNameGrammarAction(int players){
 	TeamNode * team = (TeamNode *) calloc(1, sizeof(TeamNode));
 	team->teamNumber = players;
 	team->teamType = NOTEAMNAME;
 	return team;
 }
 
-FormationNode * FormationAction(FormationNumberNode * formationNumber){
+FormationNode * FormationGrammarAction(FormationNumberNode * formationNumber){
 	FormationNode * formation = (FormationNode *) calloc(1, sizeof(FormationNode));
 	formation->formationNumber = formationNumber;
 	return formation;
 }
 
-FormationNumberNode * FormationNumberAction(char * formationNumber, FormationNumberNode * nextFormationNumber){
+FormationNumberNode * FormationNumberGrammarAction(char * formationNumber, FormationNumberNode * nextFormationNumber){
 	FormationNumberNode * formationNumber2 = (FormationNumberNode *) calloc(1, sizeof(FormationNumberNode));
 	formationNumber2->formationNumber = formationNumber;
 	formationNumber2->nextFormationNumber = nextFormationNumber;
@@ -109,28 +109,28 @@ FormationNumberNode * FormationNumberAction(char * formationNumber, FormationNum
 	return formationNumber;
 }
 
-FormationNumberNode * FormationNumberFinalAction(char * formationNumber){
+FormationNumberNode * FormationNumberFinalGrammarAction(char * formationNumber){
 	FormationNumberNode * formationNumber2 = (FormationNumberNode *) calloc(1, sizeof(FormationNumberNode));
 	formationNumber2->formationNumber = formationNumber;
 	formationNumber2->formationNumberType = FINAL;
 	return formationNumber2;
 }
 
-LineupNode * LineupAction(PlayerInfoNode * playerInfo, SubstitutesNode * substitutes){
+LineupNode * LineupGrammarAction(PlayerInfoNode * playerInfo, SubstitutesNode * substitutes){
 	LineupNode * lineup = (LineupNode *) calloc(1, sizeof(LineupNode));
 	lineup->playerInfo = playerInfo;
 	lineup->substitutes = substitutes;
 	return lineup;
 }
 
-LineupNoNumNode * LineupNoNumAction(PlayerInfoNoNumNode * playerInfoNoNum, SubstitutesNoNumNode * substitutesNoNum){
+LineupNoNumNode * LineupNoNumGrammarAction(PlayerInfoNoNumNode * playerInfoNoNum, SubstitutesNoNumNode * substitutesNoNum){
 	LineupNoNumNode * lineupNoNum = (LineupNoNumNode *) calloc(1, sizeof(LineupNoNumNode));
 	lineupNoNum->playerInfoNoNum = playerInfoNoNum;
 	lineupNoNum->substitutesNoNum = substitutesNoNum;
 	return lineupNoNum;
 }
 
-PlayerInfoNode * PlayerInfoAction(int number, char * name, PlayerInfoNode * nextPlayerInfo){
+PlayerInfoNode * PlayerInfoGrammarAction(int number, char * name, PlayerInfoNode * nextPlayerInfo){
 	PlayerInfoNode * playerInfo = (PlayerInfoNode *) calloc(1, sizeof(PlayerInfoNode));
 	playerInfo->playerNumber = number;
 	playerInfo->playerName = name;
@@ -138,27 +138,27 @@ PlayerInfoNode * PlayerInfoAction(int number, char * name, PlayerInfoNode * next
 	return playerInfo;
 }
 
-PlayerInfoNode * PlayerInfoFinalAction(int number, char * name){
+PlayerInfoNode * PlayerInfoFinalGrammarAction(int number, char * name){
 	PlayerInfoNode * playerInfo = (PlayerInfoNode *) calloc(1, sizeof(PlayerInfoNode));
 	playerInfo->playerNumber = number;
 	playerInfo->playerName = name;
 	return playerInfo;
 }
 
-PlayerInfoNoNumNode * PlayerInfoNoNumAction(char * name, PlayerInfoNoNumNode * nextPlayerInfoNoNum){
+PlayerInfoNoNumNode * PlayerInfoNoNumGrammarAction(char * name, PlayerInfoNoNumNode * nextPlayerInfoNoNum){
 	PlayerInfoNoNumNode * playerInfoNoNum = (PlayerInfoNoNumNode *) calloc(1, sizeof(PlayerInfoNoNumNode));
 	playerInfoNoNum->playerName = name;
 	playerInfoNoNum->nextPlayerInfoNoNum = nextPlayerInfoNoNum;
 	return playerInfoNoNum;
 }
 
-PlayerInfoNoNumNode * PlayerInfoNoNumFinalAction(char * name){
+PlayerInfoNoNumNode * PlayerInfoNoNumFinalGrammarAction(char * name){
 	PlayerInfoNoNumNode * playerInfoNoNum = (PlayerInfoNoNumNode *) calloc(1, sizeof(PlayerInfoNoNumNode));
 	playerInfoNoNum->playerName = name;
 	return playerInfoNoNum;
 }
 
-SubstitutesNode * SubstitutesAction(PlayerInfoNode * playerInfo){
+SubstitutesNode * SubstitutesGrammarAction(PlayerInfoNode * playerInfo){
 	SubstitutesNode * substitutes = (SubstitutesNode *) calloc(1, sizeof(SubstitutesNode));
 	substitutes->substituteName = playerInfo->playerName;
 	substitutes->substituteNumber = playerInfo->playerNumber;
@@ -166,14 +166,14 @@ SubstitutesNode * SubstitutesAction(PlayerInfoNode * playerInfo){
 	return substitutes;
 }
 
-SubstitutesNoNumNode * SubstitutesNoNumAction(PlayerInfoNoNumNode * playerInfoNoNum){
+SubstitutesNoNumNode * SubstitutesNoNumGrammarAction(PlayerInfoNoNumNode * playerInfoNoNum){
 	SubstitutesNoNumNode * substitutesNoNum = (SubstitutesNoNumNode *) calloc(1, sizeof(SubstitutesNoNumNode));
 	substitutesNoNum->substituteName = playerInfoNoNum->playerName;
 	substitutesNoNum->nextSubstituteNoNum = playerInfoNoNum->nextPlayerInfoNoNum;
 	return substitutesNoNum;
 }
 
-MetadataNode * MetadataCompleteAction(MatchDateNode * matchDate, MatchResultNode * matchResult){
+MetadataNode * MetadataCompleteGrammarAction(MatchDateNode * matchDate, MatchResultNode * matchResult){
 	MetadataNode * metadata = (MetadataNode *) calloc(1, sizeof(MetadataNode));
 	metadata->matchDate = matchDate;
 	metadata->matchResult = matchResult;
@@ -181,27 +181,27 @@ MetadataNode * MetadataCompleteAction(MatchDateNode * matchDate, MatchResultNode
 	return metadata;
 }
 
-MetadataNode * MetadataDateAction(MatchDateNode * matchDate){
+MetadataNode * MetadataDateGrammarAction(MatchDateNode * matchDate){
 	MetadataNode * metadata = (MetadataNode *) calloc(1, sizeof(MetadataNode));
 	metadata->matchDate = matchDate;
 	metadata->metadataType = HASDATE;
 	return metadata;
 }
 
-MetadataNode * MetadataResultAction(MatchResultNode * matchResult){
+MetadataNode * MetadataResultGrammarAction(MatchResultNode * matchResult){
 	MetadataNode * metadata = (MetadataNode *) calloc(1, sizeof(MetadataNode));
 	metadata->matchResult = matchResult;
 	metadata->metadataType = HASRESULT;
 	return metadata;
 }
 
-MatchDateNode * MatchDateAction(char * date){
+MatchDateNode * MatchDateGrammarAction(char * date){
 	MatchDateNode * matchDate = (MatchDateNode *) calloc(1, sizeof(MatchDateNode));
 	matchDate->date = date;
 	return matchDate;
 }
 
-MatchResultNode * MatchResultAction(char * result){
+MatchResultNode * MatchResultGrammarAction(char * result){
 	MatchResultNode * matchResult = (MatchResultNode *) calloc(1, sizeof(MatchResultNode));
 	matchResult->result = result;
 	return matchResult;
