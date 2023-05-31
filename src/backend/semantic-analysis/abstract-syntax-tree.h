@@ -1,6 +1,35 @@
 #ifndef ABSTRACT_SYNTAX_TREE_HEADER
 #define ABSTRACT_SYNTAX_TREE_HEADER
 
+typedef struct FormationNumberNode FormationNumberNode;
+typedef struct PlayerInfoNode PlayerInfoNode;
+typedef struct SubstitutesNode SubstitutesNode;
+typedef struct PlayerInfoNoNumNode PlayerInfoNoNumNode;
+typedef struct SubstitutesNoNumNode SubstitutesNoNumNode;
+
+enum NumerationType{
+	NUM,
+	NONUM
+}
+
+enum TeamType{
+	TEAMNAME,
+	NOTEAMNAME
+}
+
+enum FormationNumberType{
+	FINAL,
+	NOFINAL
+}
+
+enum MetadataType{
+	DATE,
+	RESULT,
+	COMPLETE,
+	EMPTY
+}
+
+
 struct InitialNode{
 	InfoNode * info;
 }
@@ -13,20 +42,10 @@ struct InfoNode{
 	MetadataNode * metadata;
 }
 
-enum NumerationType{
-	NUM,
-	NONUM
-}
-
 struct TeamNode{
 	TeamType teamType;
 	char * teamName;
 	int teamNumber;
-}
-
-enum TeamType{
-	TEAMNAME,
-	NOTEAMNAME
 }
 
 struct FormationNode{
@@ -37,11 +56,6 @@ struct FormationNumberNode{
 	FormationNumberType formationNumberType;
 	char * formationNumber;
 	FormationNumberNode * nextFormationNumber;
-}
-
-enum FormationNumberType{
-	FINAL,
-	NOFINAL
 }
 
 struct LineupNode{
