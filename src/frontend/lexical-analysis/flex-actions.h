@@ -37,7 +37,6 @@ token TeamAction(const char * match);
 token OfAction(const char * match); 
 token PlayersAction(const char * match); 
 token SubstitutesAction(const char * match,int option); 
-token DashAction(const char * match); 
 token ColonAction(const char * match); 
 token ApostropheAction(const char * match); 
 token StringAction(const char * match);

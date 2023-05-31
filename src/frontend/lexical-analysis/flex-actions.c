@@ -91,10 +91,8 @@ token SubstitutesAction(const char * match,int option){
 	yylval.token = SUBSTITUTESNONUM;
 	return SUBSTITUTESNONUM;
 }; 
-token DashAction(const char * match){
-	yylval.token = DASH;
-	return DASH;
-}; 
+
+
 token ColonAction(const char * match){
 	yylval.token = COLON;
 	return COLON;
