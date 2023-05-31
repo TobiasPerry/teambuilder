@@ -15,6 +15,7 @@ typedef struct MetadataNode MetadataNode;
 typedef struct MatchDateNode MatchDateNode;
 typedef struct MatchResultNode MatchResultNode;
 typedef struct InitialNode InitialNode;
+typedef struct InfoNoNumNode InfoNoNumNode;
 
 
 typedef enum{
@@ -51,6 +52,14 @@ struct InfoNode{
 	LineupNode * lineup;
 	MetadataNode * metadata;
 };
+
+struct InfoNoNumNode{
+	NumerationType numeration;
+	TeamNode * team;
+	FormationNode * formation;
+	LineupNoNumNode * lineupNoNum;
+	MetadataNode * metadata;
+}
 
 struct TeamNode{
 	TeamType teamType;
