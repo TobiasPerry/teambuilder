@@ -48,7 +48,7 @@ void yyerror(const char * string) {
 // }
 
 InitialNode * InitialAction(InfoNode * info){
-	InitalNode * initial = (InitialNode *) calloc(1, sizeof(InitialNode));
+	InitialNode * initial = (InitialNode *) calloc(1, sizeof(InitialNode));
 	initial->info = info;
 	state.succeed = true;
 	state.result = 15;
@@ -71,7 +71,7 @@ InfoNode * InfoAction(TeamNode * team, FormationNode * formation, LineupNode * l
 }
 
 InfoNoNumNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata){
-	InfoNode * info = (InfoNode *) calloc(1, sizeof(InfoNode));
+	InfoNoNumNode * info = (InfoNoNumNode *) calloc(1, sizeof(InfoNoNumNode));
 	info->team = team;
 	info->formation = formation;
 	info->lineupNoNum = lineupNoNum;
