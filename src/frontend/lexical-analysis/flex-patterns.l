@@ -35,10 +35,10 @@ string                  '[\-A-Za-z ]+'
 "TEAM"                                                      { return TeamAction(yytext); }
 "OF"                                                        { return OfAction(yytext); }
 "PLAYERS"                                                   { return PlayersAction(yytext); }
-"SUBSTITUTES"                                               { return SubstitutesAction(yytext, NUM); }
-"SUBSTITUTESNONUM"                                          { return SubstitutesAction(yytext, NONUM); }
-"LINEUPNONUM"                                               { return LineupAction(yytext,NONUM); }
-"LINEUP"                                                    { return LineupAction(yytext,NUM); }
+"SUBSTITUTES"                                               { return SubstitutesAction(yytext, HASNUM); }
+"SUBSTITUTESNONUM"                                          { return SubstitutesAction(yytext, HASNONUM); }
+"LINEUPNONUM"                                               { return LineupAction(yytext,HASNONUM); }
+"LINEUP"                                                    { return LineupAction(yytext,HASNUM); }
 "METADATA"                                                  { return MetadataAction(yytext); }
 "DATE"                                                      { return DateAction(yytext); }
 "RESULT"                                                    { return ResultAction(yytext); }
