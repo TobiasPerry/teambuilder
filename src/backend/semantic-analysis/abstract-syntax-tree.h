@@ -89,4 +89,12 @@ enum MetadataType{
 	EMPTY
 }
 
+struct MatchDateNode{
+	char * date;
+}
+
+struct MatchResultNode{
+	char * result;
+}
+
 #endif
