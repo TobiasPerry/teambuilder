@@ -47,7 +47,7 @@ void yyerror(const char * string) {
 // 	return value;
 // }
 
-InitialNode * InitialAction(InfoNode * info){
+InitialNode * InitialGrammarAction(InfoNode * info){
 	InitialNode * initial = (InitialNode *) calloc(1, sizeof(InitialNode));
 	initial->info = info;
 	state.succeed = true;
