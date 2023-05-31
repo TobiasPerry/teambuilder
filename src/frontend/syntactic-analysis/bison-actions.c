@@ -47,6 +47,91 @@ int InitialAction(const int value) {
 	return value;
 }
 
+InitialNode * InitialAction(InfoNode * info){
+	InitalNode * initial = (InitialNode *) calloc(1, sizeof(InitialNode));
+	initial->info = info;
+	return initial;
+}
+
+InfoNode * InfoAction(TeamNode * team, FormationNode * formation, LineupNode * lineup, MetadataNode * metadata){
+	InfoNode * info = (InfoNode *) calloc(1, sizeof(InfoNode));
+	info->team = team;
+	info->formation = formation;
+	info->lineup = lineup;
+	info->metadata = metadata;
+	info->numeration = NUM;
+	return info;
+}
+
+InfoNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata){
+	InfoNode * info = (InfoNode *) calloc(1, sizeof(InfoNode));
+	info->team = team;
+	info->formation = formation;
+	info->lineupNoNum = lineupNoNum;
+	info->metadata = metadata;
+	info->numeration = NONUM;
+	return info;
+}
+
+TeamNode * TeamNameAction(char * name, int players){
+	TeamNode * team = (TeamNode *) calloc(1, sizeof(TeamNode));
+	team->teamName = name;
+	team->teamNumber = players;
+	team->teamType = TEAMNAME;
+	return team;
+}
+
+TeamNode * TeamNoNameAction(int players){
+	TeamNode * team = (TeamNode *) calloc(1, sizeof(TeamNode));
+	team->teamNumber = players;
+	team->teamType = NOTEAMNAME;
+	return team;
+}
+
+FormationNode * FormationAction(FormationNumberNode * formationNumber){
+	FormationNode * formation = (FormationNode *) calloc(1, sizeof(FormationNode));
+	formation->formationNumber = formationNumber;
+	return formation;
+}
+
+FormationNumberNode * FormationNumberAction(char * formationNumber, FormationNumberNode * nextFormationNumber){
+	FormationNumberNode * formationNumber = (FormationNumberNode *) calloc(1, sizeof(FormationNumberNode));
+	formationNumber->formationNumber = formationNumber;
+	formationNumber->nextFormationNumber = nextFormationNumber;
+	formationNumber->formationNumberType = NOFINAL;
+	return formationNumber;
+}
+
+FormationNumberNode * FormationNumberFinalAction(char * formationNumber){
+	FormationNumberNode * formationNumber = (FormationNumberNode *) calloc(1, sizeof(FormationNumberNode));
+	formationNumber->formationNumber = formationNumber;
+	formationNumber->formationNumberType = FINAL;
+	return formationNumber;
+}
+
+LineupNode * LineupAction(PlayerInfoNode * playerInfo, SubstitutesNode * substitutes){
+	LineupNode * lineup = (LineupNode *) calloc(1, sizeof(LineupNode));
+	lineup->playerInfo = playerInfo;
+	lineup->substitutes = substitutes;
+	return lineup;
+}
+
+LineupNoNumNode * LineupNoNumAction(PlayerInfoNoNumNode * playerInfoNoNum, SubstitutesNoNumNode * substitutesNoNum){
+	LineupNoNumNode * lineupNoNum = (LineupNoNumNode *) calloc(1, sizeof(LineupNoNumNode));
+	lineupNoNum->playerInfoNoNum = playerInfoNoNum;
+	lineupNoNum->substitutesNoNum = substitutesNoNum;
+	return lineupNoNum;
+}
+
+PlayerInfoNode * PlayerInfoAction(int number, char * name, PlayerInfoNode * nextPlayerInfo){
+	PlayerInfoNode * playerInfo = (PlayerInfoNode *) calloc(1, sizeof(PlayerInfoNode));
+	playerInfo->playerNumber = number;
+	playerInfo->playerName = name;
+	playerInfo->nextPlayerInfo = nextPlayerInfo;
+	return playerInfo;
+}
+
+
 int Return0(){
 	return 0;
 }
