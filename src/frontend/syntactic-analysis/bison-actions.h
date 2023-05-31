@@ -12,27 +12,27 @@
  */
 
 // Programa.
-InitialNode * InitialAction(InfoNode * info);
-InfoNode * InfoAction(TeamNode * team, FormationNode * formation, LineupNode * lineup, MetadataNode * metadata);
-InfoNoNumNode * InfoNoNumAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata);
-TeamNode * TeamNameAction(char * teamName, int players);
-TeamNode * TeamNoNameAction(int players);
-FormationNode * FormationAction(FormationNumberNode * formationNumber);
-FormationNumberNode * FormationNumberAction(char * formationNumber, FormationNumberNode * nextFormationNumber);
-FormationNumberNode * FormationNumberFinalAction(char * formationNumber);
-LineupNode * LineupAction( PlayerInfoNode * playerInfo,SubstitutesNode * substitutes);
-LineupNoNumNode * LineupNoNumAction( PlayerInfoNoNumNode * playerInfoNoNum,SubstitutesNoNumNode * substitutesNoNum);
-PlayerInfoNode * PlayerInfoAction(int number, char * name, PlayerInfoNode * nextPlayerInfo);
-PlayerInfoNode * PlayerInfoFinalAction(int number, char * name);
-PlayerInfoNoNumNode * PlayerInfoNoNumAction(char * name, PlayerInfoNoNumNode * nextPlayerInfoNoNum);
-PlayerInfoNoNumNode * PlayerInfoNoNumFinalAction(char * name);
-SubstitutesNode * SubstitutesAction(PlayerInfoNode * playerInfo);
-SubstitutesNoNumNode * SubstitutesNoNumAction(PlayerInfoNoNumNode * playerInfoNoNum);
-MetadataNode * MetadataCompleteAction(MatchDateNode * matchDate, MatchResultNode * matchResult);
-MetadataNode * MetadataDateAction(MatchDateNode * matchDate);
-MetadataNode * MetadataResultAction(MatchResultNode * matchResult);
-MatchDateNode * MatchDateAction(char * date);
-MatchResultNode * MatchResultAction(char * result);
+InitialNode * InitialGrammarAction(InfoNode * info);
+InfoNode * InfoGrammarAction(TeamNode * team, FormationNode * formation, LineupNode * lineup, MetadataNode * metadata);
+InfoNoNumNode * InfoNoNumGrammarAction(TeamNode * team, FormationNode * formation, LineupNoNumNode * lineupNoNum, MetadataNode * metadata);
+TeamNode * TeamNameGrammarAction(char * teamName, int players);
+TeamNode * TeamNoNameGrammarAction(int players);
+FormationNode * FormationGrammarAction(FormationNumberNode * formationNumber);
+FormationNumberNode * FormationNumberGrammarAction(char * formationNumber, FormationNumberNode * nextFormationNumber);
+FormationNumberNode * FormationNumberFinalGrammarAction(char * formationNumber);
+LineupNode * LineupGrammarAction( PlayerInfoNode * playerInfo,SubstitutesNode * substitutes);
+LineupNoNumNode * LineupNoNumGrammarAction( PlayerInfoNoNumNode * playerInfoNoNum,SubstitutesNoNumNode * substitutesNoNum);
+PlayerInfoNode * PlayerInfoGrammarAction(int number, char * name, PlayerInfoNode * nextPlayerInfo);
+PlayerInfoNode * PlayerInfoFinalGrammarAction(int number, char * name);
+PlayerInfoNoNumNode * PlayerInfoNoNumGrammarAction(char * name, PlayerInfoNoNumNode * nextPlayerInfoNoNum);
+PlayerInfoNoNumNode * PlayerInfoNoNumFinalGrammarAction(char * name);
+SubstitutesNode * SubstitutesGrammarAction(PlayerInfoNode * playerInfo);
+SubstitutesNoNumNode * SubstitutesNoNumGrammarAction(PlayerInfoNoNumNode * playerInfoNoNum);
+MetadataNode * MetadataCompleteGrammarAction(MatchDateNode * matchDate, MatchResultNode * matchResult);
+MetadataNode * MetadataDateGrammarAction(MatchDateNode * matchDate);
+MetadataNode * MetadataResultGrammarAction(MatchResultNode * matchResult);
+MatchDateNode * MatchDateGrammarAction(char * date);
+MatchResultNode * MatchResultGrammarAction(char * result);
 
 
 

@@ -90,56 +90,56 @@
 
 %%
 
-initial: START info END											{ $$ = InitialAction($2); }
+initial: START info END											{ $$ = InitialGrammarAction($2); }
 	;
 
-info: team formation lineup metadata							{ $$ = InfoAction($1, $2, $3, $4 ); }
-	| team formation lineupNoNum metadata						{ $$ = InfoNoNumAction($1, $2, $3, $4 ); }
+info: team formation lineup metadata							{ $$ = InfoGrammarAction($1, $2, $3, $4 ); }
+	| team formation lineupNoNum metadata						{ $$ = InfoNoNumGrammarAction($1, $2, $3, $4 ); }
 	| %empty													{ $$ = Return0(); }
 	;
 
-team: TEAM STRING OF NUMBER PLAYERS								{ $$ = TeamNameAction($2, $4 ); }
-	| TEAM OF NUMBER PLAYERS									{ $$ = TeamNoNameAction($3); }
+team: TEAM STRING OF NUMBER PLAYERS								{ $$ = TeamNameGrammarAction($2, $4 ); }
+	| TEAM OF NUMBER PLAYERS									{ $$ = TeamNoNameGrammarAction($3); }
 	;
 
-formation: FORMATION formationNumber							{ $$ = FormationAction($2); }
+formation: FORMATION formationNumber							{ $$ = FormationGrammarAction($2); }
 	;
-formationNumber: FORMATIONNUMBER formationNumber				{ $$ = FormationNumberAction($1,$2); }
-	| FORMATIONNUMBER											{ $$ = FormationNumberFinalAction($1); }
-	;
-
-lineup: LINEUP playerInfo substitutes							{ $$ = LineupAction($2, $3); }
+formationNumber: FORMATIONNUMBER formationNumber				{ $$ = FormationNumberGrammarAction($1,$2); }
+	| FORMATIONNUMBER											{ $$ = FormationNumberFinalGrammarAction($1); }
 	;
 
-lineupNoNum: LINEUPNONUM playerInfoNoNum substitutesNoNum 		{ $$ = LineupNoNumAction($2, $3);}
+lineup: LINEUP playerInfo substitutes							{ $$ = LineupGrammarAction($2, $3); }
+	;
+
+lineupNoNum: LINEUPNONUM playerInfoNoNum substitutesNoNum 		{ $$ = LineupNoNumGrammarAction($2, $3);}
 	;	
 
-playerInfo: NUMBER COLON STRING playerInfo						{ $$ = PlayerInfoAction($1, $3, $4); }
-	| NUMBER COLON STRING										{ $$ = PlayerInfoFinalAction($1, $3); }
+playerInfo: NUMBER COLON STRING playerInfo						{ $$ = PlayerInfoGrammarAction($1, $3, $4); }
+	| NUMBER COLON STRING										{ $$ = PlayerInfoFinalGrammarAction($1, $3); }
 	;
 
-playerInfoNoNum: STRING playerInfoNoNum							{ $$ = PlayerInfoNoNumAction($1, $2); }
-	| STRING													{ $$ = PlayerInfoNoNumFinalAction($1); }
+playerInfoNoNum: STRING playerInfoNoNum							{ $$ = PlayerInfoNoNumGrammarAction($1, $2); }
+	| STRING													{ $$ = PlayerInfoNoNumFinalGrammarAction($1); }
 	;
 
-substitutes: SUBSTITUTES playerInfo								{ $$ = SubstitutesAction($2); }
+substitutes: SUBSTITUTES playerInfo								{ $$ = SubstitutesGrammarAction($2); }
 	| %empty													{ $$ = Return0(); }
 	;
 
-substitutesNoNum: SUBSTITUTESNONUM playerInfoNoNum				{ $$ = SubstitutesNoNumAction($2); }
+substitutesNoNum: SUBSTITUTESNONUM playerInfoNoNum				{ $$ = SubstitutesNoNumGrammarAction($2); }
 	| %empty													{ $$ = Return0(); }
 	;
 
-metadata: METADATA matchDate matchResult						{ $$ = MetadataCompleteAction($2, $3); }
-	| 	METADATA matchResult								    { $$ = MetadataResultAction($2); }
-	|	METADATA matchDate										{ $$ = MetadataDateAction($2); }
+metadata: METADATA matchDate matchResult						{ $$ = MetadataCompleteGrammarAction($2, $3); }
+	| 	METADATA matchResult								    { $$ = MetadataResultGrammarAction($2); }
+	|	METADATA matchDate										{ $$ = MetadataDateGrammarAction($2); }
 	|   %empty												    { $$ = Return0(); }
 	;
 
-matchDate: DATE COLON DATESTRING								{ $$ = MatchDateAction($3); }
+matchDate: DATE COLON DATESTRING								{ $$ = MatchDateGrammarAction($3); }
 	;
 
-matchResult: RESULT COLON APOSTROPHE RESULTSTRING APOSTROPHE	{ $$ = MatchResultAction($4); }
+matchResult: RESULT COLON APOSTROPHE RESULTSTRING APOSTROPHE	{ $$ = MatchResultGrammarAction($4); }
 	;
 
 %%
