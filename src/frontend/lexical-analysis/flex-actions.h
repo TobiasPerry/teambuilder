@@ -23,6 +23,13 @@
 void BeginCommentPatternAction();
 void EndCommentPatternAction();
 
+
+//Strings
+void BeginStringPatternAction();
+void EndStringPatternAction();
+token StringAction(const char * match);
+
+
 // Patrones terminales del lenguaje diseñado.
 token StartAction(const char * match); 
 token EndAction(const char * match);           
@@ -39,7 +46,6 @@ token PlayersAction(const char * match);
 token SubstitutesAction(const char * match,int option); 
 token ColonAction(const char * match); 
 token ApostropheAction(const char * match); 
-token StringAction(const char * match);
 token NumberAction(const char * match);
 token DateStringAction(const char * match);
 token ResultStringAction(const char * match);

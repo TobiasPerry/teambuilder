@@ -26,6 +26,14 @@ void EndCommentPatternAction() {
 	LogDebug("EndCommentPatternAction.");
 }
 
+void BeginStringPatternAction(){
+	LogDebug("BeginStringPatternAction.");
+}
+
+void EndStringPatternAction(){
+	LogDebug("EndStringPatternAction.");
+}
+
 token StartAction(const char * match){
 	yylval.token=START;
 	return START;

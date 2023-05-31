@@ -15,13 +15,14 @@
 
 /* Contextos de Flex. */
 %x COMMENT
+%x STRING
 
 /* Patrones reutilizables. */
 number			        [1-9][0-9]*
-whitespaceOrEndline		[\f\n\r\t\v]
+whitespaceOrEndline		[ \f\n\r\t\v]
 endline			        [\n]
-string                  '[\-A-Za-z ]+'
-white                   [ ]
+/* string                  '[\-A-Za-z ]+' */
+/* white                   [ ] */
 
 %%
 
@@ -30,7 +31,7 @@ white                   [ ]
 <COMMENT>{endline}							                { ; }
 <COMMENT>"*/"								                { EndCommentPatternAction(); BEGIN(INITIAL); }
 
-{white}                                                     { IgnoredPatternAction(yytext, yyleng); }
+/* {white}                                                     { IgnoredPatternAction(yytext, yyleng); } */
 "START"                                                     { return StartAction(yytext); }
 "END"                                                       { return EndAction(yytext); }           
 "FORMATION"                                                 { return FormationAction(yytext); }
@@ -49,9 +50,14 @@ white                   [ ]
 [0-9]+-[0-9]+                                               { return ResultStringAction(yytext);}
 ":"                                                         { return ColonAction(yytext); }
 "'"                                                         { return ApostropheAction(yytext); }
-{string}                                                    { return StringAction(yytext);}
-{number}                                                    { return NumberAction(yytext);}   
+/* {string}                                                    { return StringAction(yytext);} */
+{number}                                                    { return NumberAction(yytext);}  
 {whitespaceOrEndline}						                { IgnoredPatternAction(yytext, yyleng); }
+
+"\'"								                        { BEGIN(STRING); BeginStringPatternAction(); }
+<STRING>.                                                   { ; }
+<STRING>{endline}                                           { return StringAction(yytext); }
+<STRING> "\'"                                               { EndStringPatternAction();  BEGIN(INITIAL);}
 
 
 .											                { return UnknownPatternAction(yytext, yyleng); }
