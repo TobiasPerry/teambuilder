@@ -21,8 +21,6 @@
 number			        [1-9][0-9]*
 whitespaceOrEndline		[ \f\n\r\t\v]
 endline			        [\n]
-/* string                  '[\-A-Za-z ]+' */
-/* white                   [ ] */
 
 %%
 
@@ -31,7 +29,6 @@ endline			        [\n]
 <COMMENT>{endline}							                { ; }
 <COMMENT>"*/"								                { EndCommentPatternAction(); BEGIN(INITIAL); }
 
-/* {white}                                                     { IgnoredPatternAction(yytext, yyleng); } */
 "START"                                                     { return StartAction(yytext); }
 "END"                                                       { return EndAction(yytext); }           
 "FORMATION"                                                 { return FormationAction(yytext); }
@@ -50,15 +47,14 @@ endline			        [\n]
 [0-9]+-[0-9]+                                               { return ResultStringAction(yytext);}
 ":"                                                         { return ColonAction(yytext); }
 "'"                                                         { return ApostropheAction(yytext); }
-/* {string}                                                    { return StringAction(yytext);} */
 {number}                                                    { return NumberAction(yytext);}  
-{whitespaceOrEndline}						                { IgnoredPatternAction(yytext, yyleng); }
 
 "\'"								                        { BEGIN(STRING); BeginStringPatternAction(); }
 <STRING>.                                                   { ; }
 <STRING>{endline}                                           { return StringAction(yytext); }
-<STRING> "\'"                                               { EndStringPatternAction();  BEGIN(INITIAL);}
+<STRING>"\'"                                                { EndStringPatternAction();  BEGIN(INITIAL);}
 
+{whitespaceOrEndline}						                { IgnoredPatternAction(yytext, yyleng); }
 
 .											                { return UnknownPatternAction(yytext, yyleng); }
 
