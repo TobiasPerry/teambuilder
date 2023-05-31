@@ -95,7 +95,7 @@ initial: START info END											{ $$ = InitialGrammarAction($2); }
 
 info: team formation lineup metadata							{ $$ = InfoGrammarAction($1, $2, $3, $4 ); }
 	| team formation lineupNoNum metadata						{ $$ = InfoNoNumGrammarAction($1, $2, $3, $4 ); }
-	| %empty													{ $$ = Return0(); }
+	| %empty													{ $$ = NULL; }
 	;
 
 team: TEAM STRING OF NUMBER PLAYERS								{ $$ = TeamNameGrammarAction($2, $4 ); }
@@ -123,17 +123,17 @@ playerInfoNoNum: STRING playerInfoNoNum							{ $$ = PlayerInfoNoNumGrammarActio
 	;
 
 substitutes: SUBSTITUTES playerInfo								{ $$ = SubstitutesGrammarAction($2); }
-	| %empty													{ $$ = Return0(); }
+	| %empty													{ $$ = NULL; }
 	;
 
 substitutesNoNum: SUBSTITUTESNONUM playerInfoNoNum				{ $$ = SubstitutesNoNumGrammarAction($2); }
-	| %empty													{ $$ = Return0(); }
+	| %empty													{ $$ = NULL; }
 	;
 
 metadata: METADATA matchDate matchResult						{ $$ = MetadataCompleteGrammarAction($2, $3); }
 	| 	METADATA matchResult								    { $$ = MetadataResultGrammarAction($2); }
 	|	METADATA matchDate										{ $$ = MetadataDateGrammarAction($2); }
-	|   %empty												    { $$ = Return0(); }
+	|   %empty												    { $$ = NULL; }
 	;
 
 matchDate: DATE COLON DATESTRING								{ $$ = MatchDateGrammarAction($3); }
