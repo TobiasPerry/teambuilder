@@ -59,7 +59,7 @@ struct InfoNoNumNode{
 	FormationNode * formation;
 	LineupNoNumNode * lineupNoNum;
 	MetadataNode * metadata;
-}
+};
 
 struct TeamNode{
 	TeamType teamType;
