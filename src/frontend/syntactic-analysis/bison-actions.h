@@ -3,6 +3,8 @@
 
 #include "../../backend/support/shared.h"
 #include "../../backend/semantic-analysis/abstract-syntax-tree.h"
+#include "../../backend/semantic-analysis/symbol-table.h"
+#include "../../backend/support/clist.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -24,12 +26,20 @@ FormationNumberNode * FormationNumberGrammarAction(char * formationNumber, Forma
 FormationNumberNode * FormationNumberFinalGrammarAction(char * formationNumber);
 LineupNode * LineupGrammarAction( PlayerInfoNode * playerInfo,SubstitutesNode * substitutes);
 LineupNoNumNode * LineupNoNumGrammarAction( PlayerInfoNoNumNode * playerInfoNoNum,SubstitutesNoNumNode * substitutesNoNum);
+
 PlayerInfoNode * PlayerInfoGrammarAction(int number, char * name, PlayerInfoNode * nextPlayerInfo);
 PlayerInfoNode * PlayerInfoFinalGrammarAction(int number, char * name);
 PlayerInfoNoNumNode * PlayerInfoNoNumGrammarAction(char * name, PlayerInfoNoNumNode * nextPlayerInfoNoNum);
 PlayerInfoNoNumNode * PlayerInfoNoNumFinalGrammarAction(char * name);
-SubstitutesNode * SubstitutesGrammarAction(PlayerInfoNode * playerInfo);
-SubstitutesNoNumNode * SubstitutesNoNumGrammarAction(PlayerInfoNoNumNode * playerInfoNoNum);
+SubstitutesNode * SubstitutesGrammarAction(SubInfoNode * subInfo);
+SubstitutesNoNumNode * SubstitutesNoNumGrammarAction(SubInfoNoNumNode * subInfoNode);
+
+SubInfoNode * SubInfoGrammarAction(int number, char * subName, SubInfoNode * nextSub);
+SubInfoNoNumNode * SubInfoNoNumGrammarAction( char * subName, SubInfoNoNumNode * nextSub);
+SubInfoNode * SubInfoFinalGrammarAction( int number, char * subName);
+SubInfoNoNumNode * SubInfoNoNumFinalGrammarAction(char * subName);
+
+
 MetadataNode * MetadataCompleteGrammarAction(MatchDateNode * matchDate, MatchResultNode * matchResult);
 MetadataNode * MetadataDateGrammarAction(MatchDateNode * matchDate);
 MetadataNode * MetadataResultGrammarAction(MatchResultNode * matchResult);

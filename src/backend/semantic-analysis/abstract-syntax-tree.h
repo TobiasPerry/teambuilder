@@ -16,6 +16,8 @@ typedef struct MatchDateNode MatchDateNode;
 typedef struct MatchResultNode MatchResultNode;
 typedef struct InitialNode InitialNode;
 typedef struct InfoNoNumNode InfoNoNumNode;
+typedef struct SubInfoNode SubInfoNode;
+typedef struct SubInfoNoNumNode SubInfoNoNumNode;
 
 
 typedef enum{
@@ -93,6 +95,17 @@ struct SubstitutesNode{
 	int substituteNumber;
 	SubstitutesNode * nextSubstitute;
 };
+
+struct SubInfoNode{
+	char * substituteName;
+	int substituteNumber;
+	SubInfoNode * nextSubstitute;
+};
+
+struct SubInfoNoNumNode{
+	char * substituteName;
+	SubInfoNoNumNode * nextSubstitute;
+}
 
 struct LineupNoNumNode{
 	PlayerInfoNoNumNode * playerInfoNoNum;

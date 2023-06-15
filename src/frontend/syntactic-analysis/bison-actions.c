@@ -105,13 +105,17 @@ FormationNumberNode * FormationNumberGrammarAction(char * formationNumber, Forma
 	formationNumber2->formationNumber = formationNumber;
 	formationNumber2->nextFormationNumber = nextFormationNumber;
 	formationNumber2->formationNumberType = NOFINAL;
-	return formationNumber;
+	addFormation(formationNumber);
+
+	//le agregue un 2 porque me parecio que habia un error aca
+	return formationNumber2;
 }
 
 FormationNumberNode * FormationNumberFinalGrammarAction(char * formationNumber){
 	FormationNumberNode * formationNumber2 = (FormationNumberNode *) calloc(1, sizeof(FormationNumberNode));
 	formationNumber2->formationNumber = formationNumber;
 	formationNumber2->formationNumberType = FINAL;
+	addFormation(formationNumber);
 	return formationNumber2;
 }
 
@@ -134,6 +138,7 @@ PlayerInfoNode * PlayerInfoGrammarAction(int number, char * name, PlayerInfoNode
 	playerInfo->playerNumber = number;
 	playerInfo->playerName = name;
 	playerInfo->nextPlayerInfo = nextPlayerInfo;
+	addPlayer(name, number);
 	return playerInfo;
 }
 
@@ -141,6 +146,7 @@ PlayerInfoNode * PlayerInfoFinalGrammarAction(int number, char * name){
 	PlayerInfoNode * playerInfo = (PlayerInfoNode *) calloc(1, sizeof(PlayerInfoNode));
 	playerInfo->playerNumber = number;
 	playerInfo->playerName = name;
+	addPlayer(name,number);
 	return playerInfo;
 }
 
@@ -148,27 +154,66 @@ PlayerInfoNoNumNode * PlayerInfoNoNumGrammarAction(char * name, PlayerInfoNoNumN
 	PlayerInfoNoNumNode * playerInfoNoNum = (PlayerInfoNoNumNode *) calloc(1, sizeof(PlayerInfoNoNumNode));
 	playerInfoNoNum->playerName = name;
 	playerInfoNoNum->nextPlayerInfoNoNum = nextPlayerInfoNoNum;
+	addPlayer(name, -1);
 	return playerInfoNoNum;
 }
 
 PlayerInfoNoNumNode * PlayerInfoNoNumFinalGrammarAction(char * name){
 	PlayerInfoNoNumNode * playerInfoNoNum = (PlayerInfoNoNumNode *) calloc(1, sizeof(PlayerInfoNoNumNode));
 	playerInfoNoNum->playerName = name;
+	addPlayer(name, -1);
 	return playerInfoNoNum;
 }
 
-SubstitutesNode * SubstitutesGrammarAction(PlayerInfoNode * playerInfo){
+
+SubInfoNode * SubInfoGrammarAction(int number, char * subName, SubInfoNode * nextSub){
+	SubInfoNode * subInfo = (SubInfoNode *)calloc(1, sizeof(SubInfoNode));
+	subInfo->substituteName = subName;
+	subInfo->substituteNumber = number;
+	subInfo->nextSubstitute = nextSub;
+	return subInfo;
+}
+
+
+SubInfoNoNumNode * SubInfoNoNumGrammarAction( char * subName, SubInfoNoNumNode * nextSub){
+	SubInfoNoNumNode * subInfoNoNum = (SubInfoNoNumNode *)calloc(1, sizeof(SubInfoNoNumNode));
+	subInfoNoNum->substituteName = subName;
+	subInfoNoNum->nextSubstitute = nextSub;
+	return subInfoNoNum;
+}
+
+
+SubInfoNode * SubInfoFinalGrammarAction( int number, char * subName){
+	SubInfoNode * subInfo = (SubInfoNode *)calloc(1, sizeof(SubInfoNode));
+	subInfo->substituteName = subName;
+	subInfo->substituteNumber = number;
+	subInfo->nextSubstitute = NULL;
+	return subInfo;
+}
+
+
+SubInfoNoNumNode * SubInfoNoNumFinalGrammarAction(char * subName){
+	SubInfoNoNumNode * subInfoNoNum = (SubInfoNoNumNode *)calloc(1, sizeof(SubInfoNoNumNode));
+	subInfoNoNum->substituteName = subName;
+	subInfoNoNum->nextSubstitute = NULL;
+	return subInfoNoNum;
+}
+
+
+SubstitutesNode * SubstitutesGrammarAction(SubInfoNode * subInfo){
 	SubstitutesNode * substitutes = (SubstitutesNode *) calloc(1, sizeof(SubstitutesNode));
-	substitutes->substituteName = playerInfo->playerName;
-	substitutes->substituteNumber = playerInfo->playerNumber;
-	substitutes->nextSubstitute = playerInfo->nextPlayerInfo;
+	substitutes->substituteName = subInfo->substituteName;
+	substitutes->substituteNumber = subInfo->substituteNumber;
+	substitutes->nextSubstitute = subInfo->nextSubstitute;
+	addSub(subInfo->substituteName, subInfo->substituteNumber);
 	return substitutes;
 }
 
-SubstitutesNoNumNode * SubstitutesNoNumGrammarAction(PlayerInfoNoNumNode * playerInfoNoNum){
+SubstitutesNoNumNode * SubstitutesNoNumGrammarAction(SubInfoNoNumNode * subInfoNoNum){
 	SubstitutesNoNumNode * substitutesNoNum = (SubstitutesNoNumNode *) calloc(1, sizeof(SubstitutesNoNumNode));
-	substitutesNoNum->substituteName = playerInfoNoNum->playerName;
-	substitutesNoNum->nextSubstituteNoNum = playerInfoNoNum->nextPlayerInfoNoNum;
+	substitutesNoNum->substituteName = subInfoNoNum->substituteName;
+	substitutesNoNum->nextSubstituteNoNum = subInfoNoNum->nextSubstitute;
+	addSub(subInfoNoNum->substituteName, -1);
 	return substitutesNoNum;
 }
 

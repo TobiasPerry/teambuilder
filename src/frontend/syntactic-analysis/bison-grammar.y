@@ -21,11 +21,14 @@
 	MetadataNode * metadataNode;
 	MatchDateNode * matchDateNode;
 	MatchResultNode * matchResultNode;
+	SubInfoNumNode * subInfoNode;
+	SubInfoNoNumNode * subInfoNoNumNode;
 
 	// No-terminales (frontend).
 	int initial;
 	int info;
 	int playerInfo;
+	//int subInfo;
 	int substitutes;
 	int metadata;
 	int matchDate;
@@ -33,6 +36,7 @@
 	int lineup;
 	int lineupNoNum;
 	int playerInfoNoNum;
+	//int subInfoNoNum;
 	int substitutesNoNum;
 	int team;
 	int formation;
@@ -79,10 +83,14 @@
 %type <lineupNode> lineup
 %type <lineupNoNumNode> lineupNoNum
 %type <playerInfoNoNumNode> playerInfoNoNum
-%type <substitutesNoNumNode> substitutesNoNum 
 %type <formationNode> formation
 %type <teamNode> team
 %type <formationNumberNode> formationNumber
+%type <substitutesNoNumNode> substitutesNoNum 
+
+//agregados hoy:
+%type <subInfoNoNumNode> subInfoNoNum
+%type <subInfoNode> subInfo
 
 
 // El símbolo inicial de la gramatica.
@@ -122,12 +130,20 @@ playerInfoNoNum: STRING playerInfoNoNum							{ $$ = PlayerInfoNoNumGrammarActio
 	| STRING													{ $$ = PlayerInfoNoNumFinalGrammarAction($1); }
 	;
 
-substitutes: SUBSTITUTES playerInfo								{ $$ = SubstitutesGrammarAction($2); }
+substitutes: SUBSTITUTES subInfo								{ $$ = SubstitutesGrammarAction($2); }
 	| %empty													{ $$ = NULL; }
 	;
 
-substitutesNoNum: SUBSTITUTESNONUM playerInfoNoNum				{ $$ = SubstitutesNoNumGrammarAction($2); }
+substitutesNoNum: SUBSTITUTESNONUM subInfoNoNum					{ $$ = SubstitutesNoNumGrammarAction($2); }
 	| %empty													{ $$ = NULL; }
+	;
+
+subInfo: NUMBER COLON STRING subInfo							{$$ = SubInfoGrammarAction($1, $3, $4);}
+	| NUMBER COLON STRING										{$$ = SubInfoFinalGrammarAction($1, $3);}
+	;
+
+subInfoNoNum: STRING subInfoNoNum								{$$ = SubInfoNoNumGrammarAction($1, $2);}
+	| STRING													{ $$ = SubInfoNoNumFinalGrammarAction($1)}
 	;
 
 metadata: METADATA matchDate matchResult						{ $$ = MetadataCompleteGrammarAction($2, $3); }
