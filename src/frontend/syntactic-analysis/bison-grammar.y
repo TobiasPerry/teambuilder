@@ -21,7 +21,7 @@
 	MetadataNode * metadataNode;
 	MatchDateNode * matchDateNode;
 	MatchResultNode * matchResultNode;
-	SubInfoNumNode * subInfoNode;
+	SubInfoNode * subInfoNode;
 	SubInfoNoNumNode * subInfoNoNumNode;
 
 	// No-terminales (frontend).
