@@ -172,6 +172,7 @@ SubInfoNode * SubInfoGrammarAction(int number, char * subName, SubInfoNode * nex
 	subInfo->substituteName = subName;
 	subInfo->substituteNumber = number;
 	subInfo->nextSubstitute = nextSub;
+	addSub(subName, number);
 	return subInfo;
 }
 
@@ -180,6 +181,7 @@ SubInfoNoNumNode * SubInfoNoNumGrammarAction( char * subName, SubInfoNoNumNode *
 	SubInfoNoNumNode * subInfoNoNum = (SubInfoNoNumNode *)calloc(1, sizeof(SubInfoNoNumNode));
 	subInfoNoNum->substituteName = subName;
 	subInfoNoNum->nextSubstitute = nextSub;
+	addSub(subName, -1);
 	return subInfoNoNum;
 }
 
@@ -189,6 +191,7 @@ SubInfoNode * SubInfoFinalGrammarAction( int number, char * subName){
 	subInfo->substituteName = subName;
 	subInfo->substituteNumber = number;
 	subInfo->nextSubstitute = NULL;
+	addSub(subName, number);
 	return subInfo;
 }
 
@@ -197,6 +200,7 @@ SubInfoNoNumNode * SubInfoNoNumFinalGrammarAction(char * subName){
 	SubInfoNoNumNode * subInfoNoNum = (SubInfoNoNumNode *)calloc(1, sizeof(SubInfoNoNumNode));
 	subInfoNoNum->substituteName = subName;
 	subInfoNoNum->nextSubstitute = NULL;
+	addSub(subName, -1);
 	return subInfoNoNum;
 }
 
@@ -206,7 +210,6 @@ SubstitutesNode * SubstitutesGrammarAction(SubInfoNode * subInfo){
 	substitutes->substituteName = subInfo->substituteName;
 	substitutes->substituteNumber = subInfo->substituteNumber;
 	substitutes->nextSubstitute = subInfo->nextSubstitute;
-	addSub(subInfo->substituteName, subInfo->substituteNumber);
 	return substitutes;
 }
 
@@ -214,7 +217,6 @@ SubstitutesNoNumNode * SubstitutesNoNumGrammarAction(SubInfoNoNumNode * subInfoN
 	SubstitutesNoNumNode * substitutesNoNum = (SubstitutesNoNumNode *) calloc(1, sizeof(SubstitutesNoNumNode));
 	substitutesNoNum->substituteName = subInfoNoNum->substituteName;
 	substitutesNoNum->nextSubstituteNoNum = subInfoNoNum->nextSubstitute;
-	addSub(subInfoNoNum->substituteName, -1);
 	return substitutesNoNum;
 }
 
