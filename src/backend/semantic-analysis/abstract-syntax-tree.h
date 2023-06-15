@@ -105,7 +105,7 @@ struct SubInfoNode{
 struct SubInfoNoNumNode{
 	char * substituteName;
 	SubInfoNoNumNode * nextSubstitute;
-}
+};
 
 struct LineupNoNumNode{
 	PlayerInfoNoNumNode * playerInfoNoNum;
