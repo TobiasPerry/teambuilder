@@ -39,6 +39,7 @@ void setName(char * name);
 void setDate(char * date);
 
 void setResult(char * result);
+symbol_t * getSymbolTable();
 
 
 void symbolTableFree();
