@@ -52,7 +52,7 @@ token FormationNumberAction(const char * match, int length){
 	strncpy(number, match, length);
 	number[length] = '\0';
 
-	yylval.string = (char*) match;
+	yylval.string = (char*) number;
 	return FORMATIONNUMBER;
 };
 token LineupAction(const char * match,int option){
