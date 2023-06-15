@@ -3,66 +3,75 @@
 
 static FILE * pythonFile;
 
-char * getPlayersArray(){
-    char resultBuffer[BUFFER_LENGTH] = {0};
-    symbol_t * symbolTable = getSymbolTable();
-    CList * playerList = symbolTable->players;
-    for (int i = 0;i < playerList->count(playerList);i++){
-        player_t * player = playerList->at(playerList,i);
+char* getPlayersArray() {
+    char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
+    symbol_t* symbolTable = getSymbolTable();
+    CList* playerList = symbolTable->players;
+    for (int i = 0; i < playerList->count(playerList); i++) {
+        player_t* player = playerList->at(playerList, i);
         int playerNumber = player->number;
-        char * playerName = player->name;
+        char* playerName = player->name;
         if (playerNumber == -1)
             sprintf(resultBuffer + strlen(resultBuffer), "%s\n", playerName);
-        else{
-            sprintf(resultBuffer + strlen(resultBuffer), "%d : %s\n", playerNumber ,playerName);
+        else {
+            sprintf(resultBuffer + strlen(resultBuffer), "%d : %s\n", playerNumber, playerName);
         }
     }
+    return resultBuffer;
 }
 
-char * getMatchResult(InitialNode * initial){
-    MatchResultNode * matchResult = initial->info->metadata->matchResult;
-    if (matchResult == NULL){
-        return "";
+char* getMatchResult(InitialNode* initial) {
+    MatchResultNode* matchResult = initial->info->metadata->matchResult;
+    if (matchResult == NULL) {
+        return strdup("");
     }
-    return matchResult->result;
+    return strdup(matchResult->result);
 }
-char * getMatchDate(InitialNode * initial){
-    MatchDateNode * matchDate = initial->info->metadata->matchDate;
-    if (matchDate == NULL){
-        return "";
+
+char* getMatchDate(InitialNode* initial) {
+    MatchDateNode* matchDate = initial->info->metadata->matchDate;
+    if (matchDate == NULL) {
+        return strdup("");
     }
-    return matchDate->date;
+    return strdup(matchDate->date);
 }
-char * getTeamName(InitialNode * initial){
-    char * teamName = initial->info->team->teamName;
-    if (teamName == NULL){
-        return "";
+
+char* getTeamName(InitialNode* initial) {
+    printf("getTeamName\n");
+    char* teamName = initial->info->team->teamName;
+    printf("teamName: %s\n", teamName);
+    if (teamName == NULL) {
+        return strdup("");
     }
-    return teamName;
+    return strdup(teamName);
 }
-char * getSubstitutesArray(){
-    char resultBuffer[BUFFER_LENGTH] = {0};
-    symbol_t * symbolTable = getSymbolTable();
-    CList * subsList = symbolTable->subs;
-    for (int i = 0;i < subsList->count(subsList);i++){
-        player_t * sub = subsList->at(subsList,i);
+
+char* getSubstitutesArray() {
+    char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
+    symbol_t* symbolTable = getSymbolTable();
+    CList* subsList = symbolTable->subs;
+    for (int i = 0; i < subsList->count(subsList); i++) {
+        player_t* sub = subsList->at(subsList, i);
         int subNumber = sub->number;
-        char * subName = sub->name;
+        char* subName = sub->name;
         if (subNumber == -1)
             sprintf(resultBuffer + strlen(resultBuffer), "%s\n", subName);
-        else{
-            sprintf(resultBuffer + strlen(resultBuffer), "%d : %s\n", subNumber ,subName);
+        else {
+            sprintf(resultBuffer + strlen(resultBuffer), "%d : %s\n", subNumber, subName);
         }
     }
+    return resultBuffer;
 }
-char * getFormationsArray(){
-    char resultBuffer[BUFFER_LENGTH] = {0};
-    symbol_t * symbolTable = getSymbolTable();
-    CList * formationList = symbolTable->formations;
-    for (int i = 0;i < formationList->count(formationList);i++){
-        char * formation = formationList->at(formationList,i);
+
+char* getFormationsArray() {
+    char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
+    symbol_t* symbolTable = getSymbolTable();
+    CList* formationList = symbolTable->formations;
+    for (int i = 0; i < formationList->count(formationList); i++) {
+        char* formation = formationList->at(formationList, i);
         sprintf(resultBuffer + strlen(resultBuffer), "%s\n", formation);
     }
+    return resultBuffer;
 }
 
 void Generator(InitialNode * initial) {
@@ -70,12 +79,25 @@ void Generator(InitialNode * initial) {
 
 
     fprintf(pythonFile, "from PIL import Image, ImageFont, ImageDraw");
-    fprintf(pythonFile,"%s\n", getPlayersArray());
-    fprintf(pythonFile, "%s\n",getMatchResult(initial));
-    fprintf(pythonFile, "%s\n",getMatchDate(initial));
-    fprintf(pythonFile, "%s\n",getTeamName(initial));
-    fprintf(pythonFile, "%s\n",getSubstitutesArray());
-    fprintf(pythonFile, "%s\n",getFormationsArray());
+
+    char * playersArray = getPlayersArray();
+    fprintf(pythonFile,"%s\n", playersArray);
+    free(playersArray);
+    // char * matchResult = getMatchResult(initial);
+    // fprintf(pythonFile, "%s\n",matchResult);
+    // free(matchResult);
+    // char * matchDate = getMatchDate(initial);
+    // fprintf(pythonFile, "%s\n",matchDate);
+    // free(matchDate);
+    // char * teamName = getTeamName(initial);
+    // fprintf(pythonFile, "%s\n",teamName);
+    // free(teamName);
+    char * substitutesArray = getSubstitutesArray();
+    fprintf(pythonFile, "%s\n",substitutesArray);
+    free(substitutesArray);
+    char * formationsArray = getFormationsArray();
+    fprintf(pythonFile, "%s\n",formationsArray);
+    free(formationsArray);
 
     fprintf(pythonFile, "for formation in formations:\n");
     fprintf(pythonFile, "\tformationQty = formation.split(\"-\")\n"
