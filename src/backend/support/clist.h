@@ -1,17 +1,5 @@
-/******************************************/
-/*                                        */
-/*        Alexander Agdgomlishvili        */
-/*                                        */
-/*         cdevelopment@mail.com          */
-/*                                        */
-/******************************************/
-
 #ifndef CLIST_H
 #define CLIST_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 typedef struct CList
 {
@@ -69,9 +57,5 @@ CList *CList_init(size_t objSize); /* Set list object size in bytes */
         Supported types: char, short, int, long, uintptr_t, size_t, double, string.
         If type is NULL just pointers data will be printed. 
 */
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif /* CLIST_H */

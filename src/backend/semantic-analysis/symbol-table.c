@@ -1,7 +1,7 @@
 #include "symbol-table.h"
 
 
-symbol_t symbolTable = NULL;
+symbol_t *symbolTable = NULL;
 
 
 void symbolTableInit(){
@@ -10,7 +10,7 @@ void symbolTableInit(){
         return;
     }
 
-    symbolTable = (symbol_t) malloc(sizeof(symbol_t));
+    symbolTable = malloc(sizeof(symbol_t));
 
     symbolTable->players = CList_init(sizeof(player_t));
     symbolTable->subs = CList_init(sizeof(player_t));
@@ -21,30 +21,18 @@ void addPlayer(char * playerName, int playerNumber){
     player_t player;
     strcpy(player.name, playerName);
     player.number = playerNumber;
-    list->add(symbolTable->players, &player);
+    symbolTable->players->add(symbolTable->players, &player);
 }
 
 void addSub(char * subName, int subNumber){
     player_t sub;
     strcpy(sub.name, subName);
     sub.number = subNumber;
-    list->add(symbolTable->subs, &sub);
+    symbolTable->subs->add(symbolTable->subs, &sub);
 }
 
 void addFormation(char * formationName){
-    list->add(symbolTable->formations, formationName);
-}
-
-void setName(char * name){
-    strcpy(symbolTable->name, name);
-}
-
-void setDate(char * date){
-    strcpy(symbolTable->date, date);
-}
-
-void setResult(char * result){
-    strcpy(symbolTable->result, result);
+    symbolTable->formations->add(symbolTable->formations, formationName);
 }
 
 
