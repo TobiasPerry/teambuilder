@@ -194,6 +194,7 @@ void Generator(InitialNode * initial) {
                         "\n"
                         "\t# Save the resulting image\n"
                         "\tfinal_image.save(f\"result_{formation}.png\")");
-	
+
+    fclose(pythonFile);
 
 }
