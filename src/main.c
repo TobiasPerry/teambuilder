@@ -14,11 +14,13 @@ const int main(const int argumentCount, const char ** arguments) {
 	state.program = NULL;
 	state.result = 0;
 	state.succeed = false;
-	//symbolTableInit();
+	;
 	// Mostrar parámetros recibidos por consola.
 	for (int i = 0; i < argumentCount; ++i) {
 		LogInfo("Argumento %d: '%s'", i, arguments[i]);
 	}
+	symbolTableInit();
+	
 
 	// Compilar el programa de entrada.
 	LogInfo("Compilando...\n");
@@ -46,6 +48,7 @@ const int main(const int argumentCount, const char ** arguments) {
 			LogError("Error desconocido mientras se ejecutaba el analizador Bison (codigo %d).", result);
 	}
 	
+	symbolTableFree();
 	LogInfo("Fin.");
 	return result;
 }
