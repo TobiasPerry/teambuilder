@@ -14,7 +14,7 @@ void symbolTableInit(){
 
     symbolTable->players = CList_init(sizeof(player_t));
     symbolTable->subs = CList_init(sizeof(player_t));
-    symbolTable->formations = CList_init(sizeof(char[10]));
+    symbolTable->formations = CList_init(sizeof(char[12]));
 }
 
 symbol_t * getSymbolTable(){
@@ -36,6 +36,7 @@ void addSub(char * subName, int subNumber){
 }
 
 void addFormation(char * formationName){
+
     symbolTable->formations->add(symbolTable->formations, formationName);
 }
 

@@ -21,7 +21,7 @@ typedef struct symbol_t{
 }symbol_t;
 
 typedef struct player_t{
-    char name[50];
+    char name[100];
     int number;
 }player_t;
 
@@ -34,11 +34,6 @@ void addSub(char * subName, int subNumber);
 
 void addFormation(char * formationName);
 
-void setName(char * name);
-
-void setDate(char * date);
-
-void setResult(char * result);
 symbol_t * getSymbolTable();
 
 

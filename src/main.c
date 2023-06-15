@@ -31,7 +31,7 @@ const int main(const int argumentCount, const char ** arguments) {
 			// inicial de la gramática satisfactoriamente.
 			if (state.succeed) {
 				LogInfo("La compilacion fue exitosa.");
-				Generator(state.result);
+				//Generator(state.result);
 			}
 			else {
 				LogError("Se produjo un error en la aplicacion.");
@@ -47,8 +47,23 @@ const int main(const int argumentCount, const char ** arguments) {
 		default:
 			LogError("Error desconocido mientras se ejecutaba el analizador Bison (codigo %d).", result);
 	}
+	symbol_t * symbol = getSymbolTable();
+	player_t * player = symbol->players->at(symbol->players, 0);
+	player_t * sub = symbol->subs->at(symbol->subs, 0);
+	for(int i=0; i < symbol->players->count(symbol->players); i++){
+		player_t * player = symbol->players->at(symbol->players, i);
+		printf("%s %d\n", player->name, player->number);
+	}
+	for(int i =0; i < symbol->subs->count(symbol->subs); i++){
+		player_t * sub = symbol->subs->at(symbol->subs, i);
+		printf("%s %d\n", sub->name, sub->number);
+	}
+	
+
+	//LogInfo("%s", player->name );
 	
 	symbolTableFree();
+
 	LogInfo("Fin.");
 	return result;
 }

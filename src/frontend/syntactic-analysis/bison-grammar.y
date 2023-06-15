@@ -28,7 +28,7 @@
 	int initial;
 	int info;
 	int playerInfo;
-	//int subInfo;
+	int subInfo;
 	int substitutes;
 	int metadata;
 	int matchDate;
@@ -36,7 +36,7 @@
 	int lineup;
 	int lineupNoNum;
 	int playerInfoNoNum;
-	//int subInfoNoNum;
+	int subInfoNoNum;
 	int substitutesNoNum;
 	int team;
 	int formation;
@@ -143,7 +143,7 @@ subInfo: NUMBER COLON STRING subInfo							{$$ = SubInfoGrammarAction($1, $3, $4
 	;
 
 subInfoNoNum: STRING subInfoNoNum								{$$ = SubInfoNoNumGrammarAction($1, $2);}
-	| STRING													{ $$ = SubInfoNoNumFinalGrammarAction($1)}
+	| STRING													{ $$ = SubInfoNoNumFinalGrammarAction($1);}
 	;
 
 metadata: METADATA matchDate matchResult						{ $$ = MetadataCompleteGrammarAction($2, $3); }

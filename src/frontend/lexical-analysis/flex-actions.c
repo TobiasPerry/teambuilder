@@ -47,7 +47,11 @@ token FormationAction(const char * match){
 	yylval.token = FORMATION;
 	return FORMATION;
 }; 
-token FormationNumberAction(const char * match){
+token FormationNumberAction(const char * match, int length){
+	char * number= calloc(length+1, sizeof(char));
+	strncpy(number, match, length);
+	number[length] = '\0';
+
 	yylval.string = (char*) match;
 	return FORMATIONNUMBER;
 };
@@ -67,16 +71,24 @@ token DateAction(const char * match){
 	yylval.token = DATE;
 	return DATE;
 }; 
-token DateStringAction(const char * match){
-	yylval.string = (char*) match;
+token DateStringAction(const char * match, int length){
+	char * date= calloc(length+1, sizeof(char));
+	strncpy(date, match, length);
+	date[length] = '\0';
+
+	yylval.string = date;
 	return DATESTRING;
 }
 token ResultAction(const char * match){
 	yylval.token = RESULT;
 	return RESULT;
 }; 
-token ResultStringAction(const char * match){
-	yylval.string = (char*) match;
+token ResultStringAction(const char * match, int length){
+	char * result= calloc(length+1, sizeof(char));
+	strncpy(result, match, length);
+	result[length] = '\0';
+
+	yylval.string = result;
 	return RESULTSTRING;
 }
 token TeamAction(const char * match){
@@ -109,12 +121,23 @@ token ApostropheAction(const char * match){
 	yylval.token = APOSTROPHE;
 	return APOSTROPHE;
 }; 
-token StringAction(const char * match){
-	yylval.string = (char*) match;
+token StringAction(const char * match, int length){
+	char * string= calloc(length+1, sizeof(char));
+	strncpy(string, match, length);
+	string[length] = '\0';
+
+	yylval.string = string;
 	return STRING;
 };
-token NumberAction(const char * match){
-	yylval.integer=atoi(match);
+
+token NumberAction(const char * match, int length){
+	char * number= calloc(length+1, sizeof(char));
+	strncpy(number, match, length);
+	
+	number[length] = '\0';
+
+	yylval.integer=atoi(number);
+	free(number);
 	return NUMBER;
 };
 token UnknownPatternAction(const char * lexeme, const int length) {

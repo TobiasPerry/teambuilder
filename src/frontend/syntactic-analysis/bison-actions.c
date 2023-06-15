@@ -155,6 +155,7 @@ PlayerInfoNoNumNode * PlayerInfoNoNumGrammarAction(char * name, PlayerInfoNoNumN
 	playerInfoNoNum->playerName = name;
 	playerInfoNoNum->nextPlayerInfoNoNum = nextPlayerInfoNoNum;
 	addPlayer(name, -1);
+
 	return playerInfoNoNum;
 }
 

@@ -42,13 +42,13 @@ string                  '[\-A-Za-z ]+'
 "METADATA"                                                  { return MetadataAction(yytext); }
 "DATE"                                                      { return DateAction(yytext); }
 "RESULT"                                                    { return ResultAction(yytext); }
-[0-9]-[0-9]-[0-9]                                           { return FormationNumberAction(yytext);}
-'[0-9]{4}-(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])'       { return DateStringAction(yytext);}
-[0-9]+-[0-9]+                                               { return ResultStringAction(yytext);}
+[0-9]-[0-9]-[0-9]                                           { return FormationNumberAction(yytext, yyleng);}
+'[0-9]{4}-(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])'       { return DateStringAction(yytext, yyleng);}
+[0-9]+-[0-9]+                                               { return ResultStringAction(yytext, yyleng);}
 ":"                                                         { return ColonAction(yytext); }
 "'"                                                         { return ApostropheAction(yytext); }
-{string}                                                    { return StringAction(yytext);}
-{number}                                                    { return NumberAction(yytext);}  
+{string}                                                    { return StringAction(yytext, yyleng);}
+{number}                                                    { return NumberAction(yytext, yyleng);}  
 {whitespaceOrEndline}						                { IgnoredPatternAction(yytext, yyleng); }
 
 .											                { return UnknownPatternAction(yytext, yyleng); }
