@@ -81,7 +81,7 @@ void Generator(InitialNode * initial) {
     fprintf(pythonFile, "\tformationQty = formation.split(\"-\")\n"
                         "\tdefenseNumber = int(formationQty[0])\n"
                         "\tmidfieldNumber = int(formationQty[1])\n"
-                        "\tattackNumber = int(formationQty[2])");
+                        "\tattackNumber = int(formationQty[2])\n");
     fprintf(pythonFile,"\tpitch_image = Image.open(\"resources/field.png\").convert(\"RGBA\")\n"
                        "\tjersey_image = Image.open(\"resources/jersey.png\").convert(\"RGBA\")\n"
                        "\twhite_image = Image.open(\"resources/white.jpg\").convert(\"RGBA\")\n"
@@ -94,13 +94,13 @@ void Generator(InitialNode * initial) {
                        "\ttitle_font = ImageFont.truetype(\"arialbd.ttf\", 70)\n"
                        "\tsubstitutes_font = ImageFont.truetype(\"arial.ttf\", 20)\n"
                        "\tfont_thickness = 3\n"
-                       "\tresult_font = ImageFont.truetype(\"arial.ttf\", 70)");
+                       "\tresult_font = ImageFont.truetype(\"arial.ttf\", 70)\n");
     fprintf(pythonFile, "\tt = 10\n"
                         "\n"
                         "\tImageDraw.Draw(white_image).text((white_image.width / 3, t), \"Substitutes\",\n"
                         "                                     fill=(0, 0, 0), font=title_font)\n"
                         "\n"
-                        "\tt = 110");
+                        "\tt = 110\n");
     fprintf(pythonFile, "\tfor sub in substitutes:\n"
                         "\t\tif sub[\"number\"] != \"\":\n"
                         "\t\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), sub[\"number\"] + \" : \" + sub[\"name\"],\n"
@@ -118,13 +118,13 @@ void Generator(InitialNode * initial) {
                        "\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), match_result,\n"
                        "                                         fill=(0, 0, 0), font=result_font)\n"
                        "\n"
-                       "\tt += 150");
+                       "\tt += 150\n");
     fprintf(pythonFile, "\tif match_date != \"\" and t < 1200:\n"
                         "\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), \"Match Date:\",\n"
                         "                                         fill=(0, 0, 0), font=title_font)\n"
                         "\t\tt += 80\n"
                         "\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), match_date,\n"
-                        "                                         fill=(0, 0, 0), font=result_font)");
+                        "                                         fill=(0, 0, 0), font=result_font)\n");
     fprintf(pythonFile, "\tdef draw_jersey(player, position):\n"
                         "\t\t# Paste the jersey\n"
                         "\t\tpitch_image.paste(jersey_image, position, jersey_image)\n"
@@ -137,7 +137,7 @@ void Generator(InitialNode * initial) {
                         "                  stroke_fill=(0, 0, 0))\n"
                         "\n"
                         "\t\t# Add the name\n"
-                        "\t\tdraw.text((position[0]+50, position[1]+180), player[\"name\"], fill=(255, 255, 255), font=font2)");
+                        "\t\tdraw.text((position[0]+50, position[1]+180), player[\"name\"], fill=(255, 255, 255), font=font2)\n");
     fprintf(pythonFile, "\tu = 10\n"
                         "\n"
                         "\tif team_name != \"\":\n"
@@ -145,7 +145,7 @@ void Generator(InitialNode * initial) {
                         "                                         fill=(0, 0, 0), font=title_font)\n"
                         "\t\tu += 100\n"
                         "\t\tImageDraw.Draw(pitch_image).text((pitch_image.width / 3, u), formation,\n"
-                        "                                         fill=(0, 0, 0), font=font)");
+                        "                                         fill=(0, 0, 0), font=font)\n");
     fprintf(pythonFile, "\t#Draw goalkeeper\n"
                         "\tposition = (325, 1075)\n"
                         "\tplayer = players[0]\n"
@@ -161,7 +161,7 @@ void Generator(InitialNode * initial) {
                         "\t\t\tstartPosition = 150\n"
                         "\n"
                         "\t\tposition = (startPosition + i * 210, 850)\n"
-                        "\t\tdraw_jersey(player, position)");
+                        "\t\tdraw_jersey(player, position)\n");
     fprintf(pythonFile, "# Draw midfielding players\n"
                         "\tfor i in range(defenseNumber, defenseNumber+midfieldNumber):\n"
                         "\t\tplayer = players[i+1]\n"
@@ -184,7 +184,7 @@ void Generator(InitialNode * initial) {
                         "\t\telse:\n"
                         "\t\t\tstartPosition = 150\n"
                         "\t\tposition = (100 + (i-(defenseNumber+midfieldNumber)) * 210, 300)  # Adjust the vertical position as needed\n"
-                        "\t\tdraw_jersey(player, position)");
+                        "\t\tdraw_jersey(player, position)\n");
     fprintf(pythonFile, "\tfinal_image = Image.new('RGB', (pitch_image.width + white_image.width, pitch_image.height))\n"
                         "\tfinal_image.paste(pitch_image, (0, 0))\n"
                         "\tfinal_image.paste(white_image, (pitch_image.width, 0))\n"
@@ -193,7 +193,7 @@ void Generator(InitialNode * initial) {
                         "\tfinal_image.show()\n"
                         "\n"
                         "\t# Save the resulting image\n"
-                        "\tfinal_image.save(f\"result_{formation}.png\")");
+                        "\tfinal_image.save(f\"result_{formation}.png\")\n");
 
     fclose(pythonFile);
 
