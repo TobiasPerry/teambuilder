@@ -17,6 +17,10 @@ void symbolTableInit(){
     symbolTable->formations = CList_init(sizeof(char[10]));
 }
 
+symbol_t * getSymbolTable(){
+    return symbolTable;
+}
+
 void addPlayer(char * playerName, int playerNumber){
     player_t player;
     strcpy(player.name, playerName);
