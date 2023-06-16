@@ -122,7 +122,7 @@ void Generator(InitialNode * initial) {
                        "\twhite_image = Image.open(\"resources/white.jpg\").convert(\"RGBA\")\n"
                        "\tjersey_width, jersey_height = jersey_image.size\n"
                        "\tjersey_size = (int(jersey_width * 0.45), int(jersey_height * 0.45))\n"
-                       "\tjersey_image = jersey_image.resize(jersey_size)" );
+                       "\tjersey_image = jersey_image.resize(jersey_size)\n" );
     fprintf(pythonFile,"\tdraw = ImageDraw.Draw(pitch_image)\n"
                        "\tfont = ImageFont.truetype(\"arial.ttf\", 40)  # Change the font and size as needed\n"
                        "\tfont2 = ImageFont.truetype(\"arial.ttf\", 25)\n"
