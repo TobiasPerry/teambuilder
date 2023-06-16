@@ -1,7 +1,42 @@
 #include "generator.h"
+#include "../../backend/support/shared.h"
 
 
 static FILE * pythonFile;
+
+void validator(InitialNode * initial){
+    int amt1 = initial->info->team->teamNumber;
+    symbol_t* symbolTable = getSymbolTable();
+    CList* formationList = symbolTable->formations;
+    int amt2 = 0;
+    
+    //chequeo que las formaciones coincidan con la cantidad del equipo
+    for (int i = 0; i < formationList->count(formationList); i++){
+        char * string = formationList->at(formationList, i);
+
+        char * token = strtok(string, "-");
+        
+        while (token != NULL) {
+            amt2 += atoi(token);
+            token = strtok(NULL, "-");
+        }
+
+        if(amt1 != (amt2 - 1)){
+            state.succeed = false;
+            state.result = 3;
+            return;
+        }
+    }
+
+    //chequeo que la cantidad de jugadores que me enviaron coincida con la cantidad del equipo
+    CList* playerList = symbolTable->players;
+    if(playerList->count(playerList) !=  amt1){
+        state.succeed = false;
+        state.result = 3;
+        return;
+    }
+
+}
 
 char* getPlayersArray() {
     char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
