@@ -79,7 +79,7 @@ char* getFormationsArray() {
     CList* formationList = symbolTable->formations;
     for (int i = 0; i < formationList->count(formationList)-1; i++) {
         char* formation = formationList->at(formationList, i);
-        sprintf(resultBuffer + strlen(resultBuffer), "\"%s\"\n,", formation);
+        sprintf(resultBuffer + strlen(resultBuffer), "\"%s\",\n", formation);
     }
     char* formation = formationList->at(formationList, formationList->count(formationList)-1);
     sprintf(resultBuffer + strlen(resultBuffer), "\"%s\"\n", formation);
@@ -91,7 +91,7 @@ void Generator(InitialNode * initial) {
 
 
 
-    fprintf(pythonFile, "from PIL import Image, ImageFont, ImageDraw");
+    fprintf(pythonFile, "from PIL import Image, ImageFont, ImageDraw\n");
 
     char * playersArray = getPlayersArray();
     fprintf(pythonFile,"players = [%s]\n", playersArray);
@@ -106,7 +106,7 @@ void Generator(InitialNode * initial) {
     fprintf(pythonFile, "team_name = %s\n",teamName);
     free(teamName);
     char * substitutesArray = getSubstitutesArray();
-    fprintf(pythonFile, "substitutes = [%s]\n\n",substitutesArray);
+    fprintf(pythonFile, "substitutes = [%s]\n",substitutesArray);
     free(substitutesArray);
     char * formationsArray = getFormationsArray();
     fprintf(pythonFile, "formations = [%s]\n",formationsArray);
