@@ -4,7 +4,7 @@
 static FILE * pythonFile;
 
 char* getPlayersArray() {
-    char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
+    char* resultBuffer = calloc(1, BUFFER_LENGTH * sizeof(char));
     symbol_t* symbolTable = getSymbolTable();
     CList* playerList = symbolTable->players;
     for (int i = 0; i < playerList->count(playerList)-1; i++) {
@@ -51,7 +51,7 @@ char* getTeamName(InitialNode* initial) {
 }
 
 char* getSubstitutesArray() {
-    char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
+    char* resultBuffer = calloc(1, BUFFER_LENGTH * sizeof(char));
     symbol_t* symbolTable = getSymbolTable();
     CList* subsList = symbolTable->subs;
     for (int i = 0; i < subsList->count(subsList)-1; i++) {
@@ -74,16 +74,16 @@ char* getSubstitutesArray() {
 }
 
 char* getFormationsArray() {
-    char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
+    char* result1Buffer = calloc(1, BUFFER_LENGTH * sizeof(char));
     symbol_t* symbolTable = getSymbolTable();
     CList* formationList = symbolTable->formations;
     for (int i = 0; i < formationList->count(formationList)-1; i++) {
         char* formation = formationList->at(formationList, i);
-        sprintf(resultBuffer + strlen(resultBuffer), "\"%s\"\n,", formation);
+        sprintf(result1Buffer + strlen(result1Buffer), "\"%s\"\n,", formation);
     }
     char* formation = formationList->at(formationList, formationList->count(formationList)-1);
-    sprintf(resultBuffer + strlen(resultBuffer), "\"%s\"\n", formation);
-    return resultBuffer;
+    sprintf(result1Buffer + strlen(result1Buffer), "\"%s\"\n", formation);
+    return result1Buffer;
 }
 
 void Generator(InitialNode * initial) {
