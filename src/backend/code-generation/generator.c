@@ -37,9 +37,7 @@ char* getMatchDate(InitialNode* initial) {
 }
 
 char* getTeamName(InitialNode* initial) {
-    printf("getTeamName\n");
     char* teamName = initial->info->team->teamName;
-    printf("teamName: %s\n", teamName);
     if (teamName == NULL) {
         return strdup("");
     }
@@ -78,20 +76,21 @@ void Generator(InitialNode * initial) {
 	pythonFile = fopen("imageGenerator.py", "w");
 
 
+
     fprintf(pythonFile, "from PIL import Image, ImageFont, ImageDraw");
 
     char * playersArray = getPlayersArray();
     fprintf(pythonFile,"%s\n", playersArray);
     free(playersArray);
-    // char * matchResult = getMatchResult(initial);
-    // fprintf(pythonFile, "%s\n",matchResult);
-    // free(matchResult);
-    // char * matchDate = getMatchDate(initial);
-    // fprintf(pythonFile, "%s\n",matchDate);
-    // free(matchDate);
-    // char * teamName = getTeamName(initial);
-    // fprintf(pythonFile, "%s\n",teamName);
-    // free(teamName);
+    char * matchResult = getMatchResult(initial);
+    fprintf(pythonFile, "%s\n",matchResult);
+    free(matchResult);
+    char * matchDate = getMatchDate(initial);
+    fprintf(pythonFile, "%s\n",matchDate);
+    free(matchDate);
+    char * teamName = getTeamName(initial);
+    fprintf(pythonFile, "%s\n",teamName);
+    free(teamName);
     char * substitutesArray = getSubstitutesArray();
     fprintf(pythonFile, "%s\n",substitutesArray);
     free(substitutesArray);

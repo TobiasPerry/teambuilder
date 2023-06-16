@@ -75,7 +75,7 @@ token DateStringAction(const char * match, int length){
 	char * date= calloc(length+1, sizeof(char));
 	strncpy(date, match, length);
 	date[length] = '\0';
-
+	
 	yylval.string = date;
 	return DATESTRING;
 }
