@@ -132,7 +132,7 @@ void Generator(InitialNode * initial) {
     fprintf(pythonFile,"players = [%s]\n", playersArray);
     free(playersArray);
     char * matchResult = getMatchResult(initial);
-    fprintf(pythonFile, "match_result = %s\n",matchResult);
+    fprintf(pythonFile, "match_result = '%s'\n",matchResult);
     free(matchResult);
     char * matchDate = getMatchDate(initial);
     fprintf(pythonFile, "match_date = %s\n",matchDate);
@@ -227,8 +227,10 @@ void Generator(InitialNode * initial) {
                         "\t\t\tstartPosition = 30\n"
                         "\t\telif defenseNumber == 3:\n"
                         "\t\t\tstartPosition = 120\n"
-                        "\t\telse:\n"
+                        "\t\telif defenseNumber == 2:\n"
                         "\t\t\tstartPosition = 150\n"
+                        "\t\telse:\n"
+                        "\t\t\tstartPosition = 325\n"
                         "\n"
                         "\t\tposition = (startPosition + i * 210, 850)\n"
                         "\t\tdraw_jersey(player, position)\n");
@@ -237,10 +239,12 @@ void Generator(InitialNode * initial) {
                         "\t\tplayer = players[i+1]\n"
                         "\t\tif midfieldNumber == 4:\n"
                         "\t\t\tstartPosition = 30\n"
-                        "\t\telif midfieldNumber ==3:\n"
+                        "\t\telif midfieldNumber == 3:\n"
                         "\t\t\tstartPosition = 120\n"
-                        "\t\telse:\n"
+                        "\t\telif defenseNumber == 2:\n"
                         "\t\t\tstartPosition = 150\n"
+                        "\t\telse:\n"
+                        "\t\t\tstartPosition = 325\n"
                         "\n"
                         "\t\tposition = (startPosition + (i-(defenseNumber)) * 210, 600)\n"
                         "\t\tdraw_jersey(player, position)");
@@ -251,9 +255,11 @@ void Generator(InitialNode * initial) {
                         "\t\t\tstartPosition = 30\n"
                         "\t\telif attackNumber == 3:\n"
                         "\t\t\tstartPosition = 100\n"
-                        "\t\telse:\n"
+                        "\t\telif defenseNumber == 2:\n"
                         "\t\t\tstartPosition = 150\n"
-                        "\t\tposition = (100 + (i-(defenseNumber+midfieldNumber)) * 210, 300)  # Adjust the vertical position as needed\n"
+                        "\t\telse:\n"
+                        "\t\t\tstartPosition = 325\n"
+                        "\t\tposition = (startPosition + (i-(defenseNumber+midfieldNumber)) * 210, 300)  # Adjust the vertical position as needed\n"
                         "\t\tdraw_jersey(player, position)\n");
     fprintf(pythonFile, "\tfinal_image = Image.new('RGB', (pitch_image.width + white_image.width, pitch_image.height))\n"
                         "\tfinal_image.paste(pitch_image, (0, 0))\n"
