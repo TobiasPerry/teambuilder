@@ -79,10 +79,10 @@ char* getFormationsArray() {
     CList* formationList = symbolTable->formations;
     for (int i = 0; i < formationList->count(formationList)-1; i++) {
         char* formation = formationList->at(formationList, i);
-        sprintf(result1Buffer + strlen(result1Buffer), "\"%s\",\n", formation);
+        sprintf(result1Buffer + strlen(result1Buffer), "\"%s\",", formation);
     }
     char* formation = formationList->at(formationList, formationList->count(formationList)-1);
-    sprintf(result1Buffer + strlen(result1Buffer), "\"%s\"\n", formation);
+    sprintf(result1Buffer + strlen(result1Buffer), "\"%s\"", formation);
     return result1Buffer;
 }
 
@@ -143,7 +143,7 @@ void Generator(InitialNode * initial) {
                         "\t\telse:\n"
                         "\t\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), sub[\"name\"],\n"
                         "                                             fill=(0, 0, 0), font=substitutes_font)\n"
-                        "\t\tt = t + 50");
+                        "\t\tt = t + 50\n");
     fprintf(pythonFile,"\tt += 20\n"
                        "\n"
                        "\tif match_result != \"\" and t < 1200:\n"
