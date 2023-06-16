@@ -259,7 +259,7 @@ void Generator(InitialNode * initial) {
                         "\t\t\tstartPosition = 150\n"
                         "\t\telse:\n"
                         "\t\t\tstartPosition = 325\n"
-                        "\t\tposition = (100 + (i-(defenseNumber+midfieldNumber)) * 210, 300)  # Adjust the vertical position as needed\n"
+                        "\t\tposition = (startPosition + (i-(defenseNumber+midfieldNumber)) * 210, 300)  # Adjust the vertical position as needed\n"
                         "\t\tdraw_jersey(player, position)\n");
     fprintf(pythonFile, "\tfinal_image = Image.new('RGB', (pitch_image.width + white_image.width, pitch_image.height))\n"
                         "\tfinal_image.paste(pitch_image, (0, 0))\n"
