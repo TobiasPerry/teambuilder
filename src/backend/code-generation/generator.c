@@ -39,18 +39,24 @@ void validator(InitialNode * initial){
 }
 
 char* getPlayersArray() {
-    char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
+    char* resultBuffer = calloc(1, BUFFER_LENGTH * sizeof(char));
     symbol_t* symbolTable = getSymbolTable();
     CList* playerList = symbolTable->players;
-    for (int i = 0; i < playerList->count(playerList); i++) {
+    for (int i = 0; i < playerList->count(playerList)-1; i++) {
         player_t* player = playerList->at(playerList, i);
         int playerNumber = player->number;
         char* playerName = player->name;
         if (playerNumber == -1)
-            sprintf(resultBuffer + strlen(resultBuffer), "%s\n", playerName);
+            sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": NULL, \"name\": \"%s\"},", playerName);
         else {
-            sprintf(resultBuffer + strlen(resultBuffer), "%d : %s\n", playerNumber, playerName);
+            sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"%d\", \"name\": \"%s\"},", playerNumber,playerName);
         }
+    }
+    player_t* player = playerList->at(playerList, playerList->count(playerList)-1);
+    if (player->number == -1)
+        sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": NULL, \"name\": \"%s\"}", player->name);
+    else {
+        sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"%d\", \"name\": \"%s\"}", player->number,player->name);
     }
     return resultBuffer;
 }
@@ -80,31 +86,39 @@ char* getTeamName(InitialNode* initial) {
 }
 
 char* getSubstitutesArray() {
-    char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
+    char* resultBuffer = calloc(1, BUFFER_LENGTH * sizeof(char));
     symbol_t* symbolTable = getSymbolTable();
     CList* subsList = symbolTable->subs;
-    for (int i = 0; i < subsList->count(subsList); i++) {
-        player_t* sub = subsList->at(subsList, i);
-        int subNumber = sub->number;
-        char* subName = sub->name;
-        if (subNumber == -1)
-            sprintf(resultBuffer + strlen(resultBuffer), "%s\n", subName);
+    for (int i = 0; i < subsList->count(subsList)-1; i++) {
+        player_t* player = subsList->at(subsList, i);
+        int playerNumber = player->number;
+        char* playerName = player->name;
+        if (playerNumber == -1)
+            sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": NULL, \"name\": \"%s\"},", playerName);
         else {
-            sprintf(resultBuffer + strlen(resultBuffer), "%d : %s\n", subNumber, subName);
+            sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"%d\", \"name\": \"%s\"},", playerNumber,playerName);
         }
+    }
+    player_t* player = subsList->at(subsList, subsList->count(subsList)-1);
+    if (player->number == -1)
+        sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": NULL, \"name\": \"%s\"}", player->name);
+    else {
+        sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"%d\", \"name\": \"%s\"}", player->number,player->name);
     }
     return resultBuffer;
 }
 
 char* getFormationsArray() {
-    char* resultBuffer = malloc(BUFFER_LENGTH * sizeof(char));
+    char* result1Buffer = calloc(1, BUFFER_LENGTH * sizeof(char));
     symbol_t* symbolTable = getSymbolTable();
     CList* formationList = symbolTable->formations;
-    for (int i = 0; i < formationList->count(formationList); i++) {
+    for (int i = 0; i < formationList->count(formationList)-1; i++) {
         char* formation = formationList->at(formationList, i);
-        sprintf(resultBuffer + strlen(resultBuffer), "%s\n", formation);
+        sprintf(result1Buffer + strlen(result1Buffer), "\"%s\",", formation);
     }
-    return resultBuffer;
+    char* formation = formationList->at(formationList, formationList->count(formationList)-1);
+    sprintf(result1Buffer + strlen(result1Buffer), "\"%s\"", formation);
+    return result1Buffer;
 }
 
 void Generator(InitialNode * initial) {
@@ -112,25 +126,25 @@ void Generator(InitialNode * initial) {
 
 
 
-    fprintf(pythonFile, "from PIL import Image, ImageFont, ImageDraw");
+    fprintf(pythonFile, "from PIL import Image, ImageFont, ImageDraw\n");
 
     char * playersArray = getPlayersArray();
-    fprintf(pythonFile,"%s\n", playersArray);
+    fprintf(pythonFile,"players = [%s]\n", playersArray);
     free(playersArray);
     char * matchResult = getMatchResult(initial);
-    fprintf(pythonFile, "%s\n",matchResult);
+    fprintf(pythonFile, "match_result = %s\n",matchResult);
     free(matchResult);
     char * matchDate = getMatchDate(initial);
-    fprintf(pythonFile, "%s\n",matchDate);
+    fprintf(pythonFile, "match_date = %s\n",matchDate);
     free(matchDate);
     char * teamName = getTeamName(initial);
-    fprintf(pythonFile, "%s\n",teamName);
+    fprintf(pythonFile, "team_name = %s\n",teamName);
     free(teamName);
     char * substitutesArray = getSubstitutesArray();
-    fprintf(pythonFile, "%s\n",substitutesArray);
+    fprintf(pythonFile, "substitutes = [%s]\n",substitutesArray);
     free(substitutesArray);
     char * formationsArray = getFormationsArray();
-    fprintf(pythonFile, "%s\n",formationsArray);
+    fprintf(pythonFile, "formations = [%s]\n",formationsArray);
     free(formationsArray);
 
     fprintf(pythonFile, "for formation in formations:\n");
@@ -143,7 +157,7 @@ void Generator(InitialNode * initial) {
                        "\twhite_image = Image.open(\"resources/white.jpg\").convert(\"RGBA\")\n"
                        "\tjersey_width, jersey_height = jersey_image.size\n"
                        "\tjersey_size = (int(jersey_width * 0.45), int(jersey_height * 0.45))\n"
-                       "\tjersey_image = jersey_image.resize(jersey_size)" );
+                       "\tjersey_image = jersey_image.resize(jersey_size)\n" );
     fprintf(pythonFile,"\tdraw = ImageDraw.Draw(pitch_image)\n"
                        "\tfont = ImageFont.truetype(\"arial.ttf\", 40)  # Change the font and size as needed\n"
                        "\tfont2 = ImageFont.truetype(\"arial.ttf\", 25)\n"
@@ -164,7 +178,7 @@ void Generator(InitialNode * initial) {
                         "\t\telse:\n"
                         "\t\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), sub[\"name\"],\n"
                         "                                             fill=(0, 0, 0), font=substitutes_font)\n"
-                        "\t\tt = t + 50");
+                        "\t\tt = t + 50\n");
     fprintf(pythonFile,"\tt += 20\n"
                        "\n"
                        "\tif match_result != \"\" and t < 1200:\n"
