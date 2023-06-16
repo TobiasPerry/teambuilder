@@ -97,7 +97,7 @@ void Generator(InitialNode * initial) {
     fprintf(pythonFile,"players = [%s]\n", playersArray);
     free(playersArray);
     char * matchResult = getMatchResult(initial);
-    fprintf(pythonFile, "match_result = %s\n",matchResult);
+    fprintf(pythonFile, "match_result = '%s'\n",matchResult);
     free(matchResult);
     char * matchDate = getMatchDate(initial);
     fprintf(pythonFile, "match_date = %s\n",matchDate);
