@@ -124,7 +124,7 @@ char* getFormationsArray() {
 void Generator(InitialNode * initial) {
 	pythonFile = fopen("imageGenerator.py", "w");
 
-
+    validator(initial);
 
     fprintf(pythonFile, "from PIL import Image, ImageFont, ImageDraw\n");
 
