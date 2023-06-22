@@ -44,6 +44,9 @@ int validator(InitialNode * initial){
     CList* playerList = symbolTable->players;
     int playerCount = playerList->count(playerList);
     int subsCount = subsList->count(subsList);
+    if(subsCount >15){
+        return 0;
+    }
     if(playerCount !=  amt1){
         state.succeed = false;
         state.result = 3;
@@ -79,6 +82,7 @@ int validator(InitialNode * initial){
         
         }
     }
+
     return 1;
 }
 
