@@ -98,6 +98,9 @@ char* getSubstitutesArray() {
     char* resultBuffer = calloc(1, BUFFER_LENGTH * sizeof(char));
     symbol_t* symbolTable = getSymbolTable();
     CList* subsList = symbolTable->subs;
+    if(subsList->count(subsList) == 0){
+        return strdup("{}");
+    }
     for (int i = 0; i < subsList->count(subsList)-1; i++) {
         player_t* player = subsList->at(subsList, i);
         int playerNumber = player->number;
@@ -281,6 +284,7 @@ int Generator(InitialNode * initial) {
                         "\n"
                         "\t# Save the resulting image\n"
                         "\tfinal_image.save(f\"result_{formation}.png\")\n");
+                        printf("Python file created successfully\n");
 
     fclose(pythonFile);
 

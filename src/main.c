@@ -24,8 +24,9 @@ const int main(const int argumentCount, const char ** arguments) {
 
 	// Compilar el programa de entrada.
 	LogInfo("Compilando...\n");
-	const int result = yyparse();
-	switch (result) {
+	int result = yyparse();
+	int preResult = result;
+	switch (preResult) {
 		case 0:
 			// La variable "succeed" es la que setea Bison al identificar el símbolo
 			// inicial de la gramática satisfactoriamente.
@@ -37,7 +38,7 @@ const int main(const int argumentCount, const char ** arguments) {
 						break;
 					case -1:
 						LogError("Error en tiempo de generacion de codigo");
-						result = 0;
+						result=-1;
 						break;
 				}
 				
@@ -56,17 +57,7 @@ const int main(const int argumentCount, const char ** arguments) {
 		default:
 			LogError("Error desconocido mientras se ejecutaba el analizador Bison (codigo %d).", result);
 	}
-	symbol_t * symbol = getSymbolTable();
-	player_t * player = symbol->players->at(symbol->players, 0);
-	player_t * sub = symbol->subs->at(symbol->subs, 0);
-	for(int i=0; i < symbol->formations->count(symbol->formations); i++){
-		char * formation = symbol->formations->at(symbol->formations, i);
-		printf(" formation : %s\n", formation);
-	}
-	for(int i =0; i < symbol->subs->count(symbol->subs); i++){
-		player_t * sub = symbol->subs->at(symbol->subs, i);
-		printf("%s %d\n", sub->name, sub->number);
-	}
+	
 	
 
 	//LogInfo("%s", player->name );
