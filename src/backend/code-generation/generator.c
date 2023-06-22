@@ -22,6 +22,7 @@ int validator(InitialNode * initial){
         while (token != NULL) {
             num  = atoi(token);
             if(num >=5){
+                state.succeed = false;
                 state.result = 3;
                 return 0;
             }
@@ -30,6 +31,7 @@ int validator(InitialNode * initial){
         }
 
         if(amt1 != (amt2 + 1)){
+            state.succeed = false;
             state.result = 3;
             return 0;
         }
@@ -38,6 +40,7 @@ int validator(InitialNode * initial){
     //chequeo que la cantidad de jugadores que me enviaron coincida con la cantidad del equipo
     CList* playerList = symbolTable->players;
     if(playerList->count(playerList) !=  amt1){
+        state.succeed = false;
         state.result = 3;
         return 0;
     }
