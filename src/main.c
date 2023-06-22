@@ -37,6 +37,7 @@ const int main(const int argumentCount, const char ** arguments) {
 						break;
 					case -1:
 						LogError("Error en tiempo de generacion de codigo");
+						result = 0;
 						break;
 				}
 				
