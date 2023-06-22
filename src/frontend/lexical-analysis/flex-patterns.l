@@ -15,12 +15,13 @@
 
 /* Contextos de Flex. */
 %x COMMENT
+%x STRING
 
 /* Patrones reutilizables. */
 number			        [1-9][0-9]*
 whitespaceOrEndline		[ \f\n\r\t\v]
 endline			        [\n]
-string                  '[\-A-Za-z ]+'
+/* string                  '[\-A-Za-z ]+' */
 
 %%
 
@@ -46,8 +47,11 @@ string                  '[\-A-Za-z ]+'
 '[0-9]{4}-(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])'       { return DateStringAction(yytext, yyleng);}
 [0-9]+-[0-9]+                                               { return ResultStringAction(yytext, yyleng);}
 ":"                                                         { return ColonAction(yytext); }
+"'"                                                         { BEGIN(STRING); BeginStringPatternAction(); }
+<STRING>{.}                                                 {return StringAction(yytext, yyleng);}                                        
+"'"                                                         { EndStringPatternAction(); BEGIN(INITIAL); }
 "'"                                                         { return ApostropheAction(yytext); }
-{string}                                                    { return StringAction(yytext, yyleng);}
+/* {string}                                                    { return StringAction(yytext, yyleng);} */
 {number}                                                    { return NumberAction(yytext, yyleng);}  
 {whitespaceOrEndline}						                { IgnoredPatternAction(yytext, yyleng); }
 
