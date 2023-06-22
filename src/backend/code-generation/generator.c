@@ -10,9 +10,10 @@ int validator(InitialNode * initial){
     CList* formationList = symbolTable->formations;
     int amt2 = 0;
     int num;
-
+    int aux;
     //chequeo que las formaciones coincidan con la cantidad del equipo
    for (int i = 0; i < formationList->count(formationList); i++){
+        amt2 = 0;
         char * buff = formationList->at(formationList, i);
         char string[12];
         strcpy(string,  buff);
@@ -29,7 +30,7 @@ int validator(InitialNode * initial){
             amt2 += num;
             token = strtok(NULL, "-");
         }
-
+        
         if(amt1 != (amt2 + 1)){
             state.succeed = false;
             state.result = 3;
@@ -71,26 +72,28 @@ char* getPlayersArray() {
 }
 
 char* getMatchResult(InitialNode* initial) {
-    MatchResultNode* matchResult = initial->info->metadata->matchResult;
-    if (matchResult == NULL) {
+    
+    if(initial->info->metadata == NULL || (initial->info->metadata->metadataType != COMPLETE && initial->info->metadata->metadataType != HASRESULT)){
         return strdup("");
     }
+    MatchResultNode* matchResult = initial->info->metadata->matchResult;
     return strdup(matchResult->result);
 }
 
 char* getMatchDate(InitialNode* initial) {
-    MatchDateNode* matchDate = initial->info->metadata->matchDate;
-    if (matchDate == NULL) {
+    if (initial->info->metadata == NULL || (initial->info->metadata->metadataType != COMPLETE && initial->info->metadata->metadataType != HASDATE)) {
         return strdup("");
     }
+    MatchDateNode* matchDate = initial->info->metadata->matchDate;
     return strdup(matchDate->date);
 }
 
 char* getTeamName(InitialNode* initial) {
-    char* teamName = initial->info->team->teamName;
-    if (teamName == NULL) {
+
+    if(initial->info->team->teamType == NOTEAMNAME){
         return strdup("");
     }
+    char* teamName = initial->info->team->teamName;
     return strdup(teamName);
 }
 
