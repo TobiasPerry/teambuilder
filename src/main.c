@@ -31,7 +31,15 @@ const int main(const int argumentCount, const char ** arguments) {
 			// inicial de la gramática satisfactoriamente.
 			if (state.succeed) {
 				LogInfo("La compilacion fue exitosa.");
-				Generator(state.program);
+				switch(Generator(state.program)){
+					case 0:
+						LogInfo("Generacion exitosa");
+						break;
+					case -1:
+						LogError("Error en tiempo de generacion de codigo");
+						break;
+				}
+				
 			}
 			else {
 				LogError("Se produjo un error en la aplicacion.");

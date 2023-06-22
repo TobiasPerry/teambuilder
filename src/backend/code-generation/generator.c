@@ -4,38 +4,44 @@
 
 static FILE * pythonFile;
 
-void validator(InitialNode * initial){
+int validator(InitialNode * initial){
     int amt1 = initial->info->team->teamNumber;
     symbol_t* symbolTable = getSymbolTable();
     CList* formationList = symbolTable->formations;
     int amt2 = 0;
+    int num;
     
     //chequeo que las formaciones coincidan con la cantidad del equipo
     for (int i = 0; i < formationList->count(formationList); i++){
-        char * string = formationList->at(formationList, i);
+        char * buff = formationList->at(formationList, i);
+        char * string;
+        strcpy(string,  buff);
 
         char * token = strtok(string, "-");
         
         while (token != NULL) {
-            amt2 += atoi(token);
+            num  = atoi(token);
+            if(num >=5){
+                state.result = 3;
+                return 0;
+            }
+            amt2 += num;
             token = strtok(NULL, "-");
         }
 
         if(amt1 != (amt2 - 1)){
-            state.succeed = false;
             state.result = 3;
-            return;
+            return 0;
         }
     }
 
     //chequeo que la cantidad de jugadores que me enviaron coincida con la cantidad del equipo
     CList* playerList = symbolTable->players;
     if(playerList->count(playerList) !=  amt1){
-        state.succeed = false;
         state.result = 3;
-        return;
+        return 0;
     }
-
+    return 1;
 }
 
 char* getPlayersArray() {
@@ -121,10 +127,12 @@ char* getFormationsArray() {
     return result1Buffer;
 }
 
-void Generator(InitialNode * initial) {
+int Generator(InitialNode * initial) {
 	pythonFile = fopen("imageGenerator.py", "w");
 
-    validator(initial);
+    if(!validator(initial)){
+        return -1;
+    }
 
     fprintf(pythonFile, "from PIL import Image, ImageFont, ImageDraw\n");
 
@@ -272,5 +280,7 @@ void Generator(InitialNode * initial) {
                         "\tfinal_image.save(f\"result_{formation}.png\")\n");
 
     fclose(pythonFile);
+
+    return 0;
 
 }

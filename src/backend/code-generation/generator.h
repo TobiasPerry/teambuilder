@@ -8,7 +8,7 @@
 #include "../semantic-analysis/symbol-table.h"
 #define BUFFER_LENGTH 5000
 
-void Generator(InitialNode * initial);
+int Generator(InitialNode * initial);
 char * getPlayersArray();
 char * getMatchResult(InitialNode * initial);
 char * getMatchDate(InitialNode * initial);
