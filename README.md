@@ -65,29 +65,6 @@ SUBSTITUTESNONUM
 END
 ```
 
-
-## Tests
-
-Accept:
-* 01: Formacion fubol 5
-* 02: Formacion futbol 8
-* 03: Formacion futbol 11
-* 04: Formacion sin suplenetes
-* 05: Formacion sin fecha ni nombre de equipo
-* 06: Formacion sin metadatos
-* 07: Formacion sin numeracion
-* 08: Doble formacion
-
-Reject:
-* 01: No cumple formato de formacion. (Ej formacion correcta: 4-4-2)
-* 02: Caracteres invalidos en las variables
-* 03: Formato de fecha incorrecto
-* 04: Jugadores sin numerar cuando se requiere numeracion
-* 05: Campo de sustitutos presente pero vacio
-* 06: Campo de titulares y sustitutos con opcion de numeracion alternada
-* 07: Campos de titulares vacio
-* 08: Formato de resultado invalido
-
 ## Requerimientos
 
 Para construir el compilador, se requieren las siguientes dependencias:
