@@ -10,11 +10,11 @@ int validator(InitialNode * initial){
     CList* formationList = symbolTable->formations;
     int amt2 = 0;
     int num;
-    
+
     //chequeo que las formaciones coincidan con la cantidad del equipo
-    for (int i = 0; i < formationList->count(formationList); i++){
+   for (int i = 0; i < formationList->count(formationList); i++){
         char * buff = formationList->at(formationList, i);
-        char * string;
+        char string[12];
         strcpy(string,  buff);
 
         char * token = strtok(string, "-");
@@ -29,7 +29,7 @@ int validator(InitialNode * initial){
             token = strtok(NULL, "-");
         }
 
-        if(amt1 != (amt2 - 1)){
+        if(amt1 != (amt2 + 1)){
             state.result = 3;
             return 0;
         }
