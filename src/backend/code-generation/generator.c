@@ -213,7 +213,7 @@ int Generator(InitialNode * initial) {
                        "\tfont = ImageFont.truetype(\"arial.ttf\", 40)  # Change the font and size as needed\n"
                        "\tfont2 = ImageFont.truetype(\"arial.ttf\", 25)\n"
                        "\ttitle_font = ImageFont.truetype(\"arialbd.ttf\", 70)\n"
-                       "\tsubstitutes_font = ImageFont.truetype(\"arial.ttf\", 20)\n"
+                       "\tsubstitutes_font = ImageFont.truetype(\"arial.ttf\", 35)\n"
                        "\tfont_thickness = 3\n"
                        "\tresult_font = ImageFont.truetype(\"arial.ttf\", 70)\n");
     fprintf(pythonFile, "\tt = 10\n"
@@ -239,7 +239,7 @@ int Generator(InitialNode * initial) {
                        "\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), match_result,\n"
                        "                                         fill=(0, 0, 0), font=result_font)\n"
                        "\n"
-                       "\tt += 150\n");
+                       "\tt += 120\n");
     fprintf(pythonFile, "\tif match_date != \"\" and t < 1200:\n"
                         "\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), \"Match Date:\",\n"
                         "                                         fill=(0, 0, 0), font=title_font)\n"
