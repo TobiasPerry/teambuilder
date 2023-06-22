@@ -95,14 +95,14 @@ char* getPlayersArray() {
         int playerNumber = player->number;
         char* playerName = player->name;
         if (playerNumber == -1)
-            sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": NULL, \"name\": \"%s\"},", playerName);
+            sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"\", \"name\": \"%s\"},", playerName);
         else {
             sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"%d\", \"name\": \"%s\"},", playerNumber,playerName);
         }
     }
     player_t* player = playerList->at(playerList, playerList->count(playerList)-1);
     if (player->number == -1)
-        sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": NULL, \"name\": \"%s\"}", player->name);
+        sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"\", \"name\": \"%s\"}", player->name);
     else {
         sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"%d\", \"name\": \"%s\"}", player->number,player->name);
     }
@@ -147,14 +147,14 @@ char* getSubstitutesArray() {
         int playerNumber = player->number;
         char* playerName = player->name;
         if (playerNumber == -1)
-            sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": NULL, \"name\": \"%s\"},", playerName);
+            sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"\", \"name\": \"%s\"},", playerName);
         else {
             sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"%d\", \"name\": \"%s\"},", playerNumber,playerName);
         }
     }
     player_t* player = subsList->at(subsList, subsList->count(subsList)-1);
     if (player->number == -1)
-        sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": NULL, \"name\": \"%s\"}", player->name);
+        sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"\", \"name\": \"%s\"}", player->name);
     else {
         sprintf(resultBuffer + strlen(resultBuffer), "{\"number\": \"%d\", \"name\": \"%s\"}", player->number,player->name);
     }
@@ -236,7 +236,7 @@ int Generator(InitialNode * initial) {
                         "\t\tt = t + 50\n");
     fprintf(pythonFile,"\tt += 20\n"
                        "\n"
-                       "\tif match_result != \"\" and t < 1200:\n"
+                       "\tif match_result != \"\"\n"
                        "\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), \"Match Result:\",\n"
                        "                                         fill=(0, 0, 0), font=title_font)\n"
                        "\t\tt += 80\n"
@@ -244,7 +244,7 @@ int Generator(InitialNode * initial) {
                        "                                         fill=(0, 0, 0), font=result_font)\n"
                        "\n"
                        "\tt += 120\n");
-    fprintf(pythonFile, "\tif match_date != \"\" and t < 1200:\n"
+    fprintf(pythonFile, "\tif match_date != \"\"\n"
                         "\t\tImageDraw.Draw(white_image).text((white_image.width / 3, t), \"Match Date:\",\n"
                         "                                         fill=(0, 0, 0), font=title_font)\n"
                         "\t\tt += 80\n"
