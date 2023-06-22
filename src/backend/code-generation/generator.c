@@ -201,6 +201,8 @@ int Generator(InitialNode * initial) {
     char * formationsArray = getFormationsArray();
     fprintf(pythonFile, "formations = [%s]\n",formationsArray);
     free(formationsArray);
+    fprintf(pythonFile, "players.reverse()\n");
+    fprintf(pythonFile, "substitutes.reverse()\n");
 
     fprintf(pythonFile, "for formation in formations:\n");
     fprintf(pythonFile, "\tformationQty = formation.split(\"-\")\n"
