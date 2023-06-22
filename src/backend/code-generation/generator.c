@@ -175,7 +175,7 @@ char* getFormationsArray() {
 }
 
 int Generator(InitialNode * initial) {
-	pythonFile = fopen("imageGenerator.py", "w");
+	pythonFile = fopen("./output/imageGenerator.py", "w");
 
     if(!validator(initial)){
         return -1;
@@ -190,10 +190,10 @@ int Generator(InitialNode * initial) {
     fprintf(pythonFile, "match_result = '%s'\n",matchResult);
     free(matchResult);
     char * matchDate = getMatchDate(initial);
-    fprintf(pythonFile, "match_date = %s\n",matchDate);
+    fprintf(pythonFile, "match_date = '%s'\n",matchDate);
     free(matchDate);
     char * teamName = getTeamName(initial);
-    fprintf(pythonFile, "team_name = %s\n",teamName);
+    fprintf(pythonFile, "team_name = '%s'\n",teamName);
     free(teamName);
     char * substitutesArray = getSubstitutesArray();
     fprintf(pythonFile, "substitutes = [%s]\n",substitutesArray);
