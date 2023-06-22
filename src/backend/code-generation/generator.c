@@ -120,7 +120,7 @@ char* getMatchResult(InitialNode* initial) {
 
 char* getMatchDate(InitialNode* initial) {
     if (initial->info->metadata == NULL || (initial->info->metadata->metadataType != COMPLETE && initial->info->metadata->metadataType != HASDATE)) {
-        return strdup("");
+        return strdup("''");
     }
     MatchDateNode* matchDate = initial->info->metadata->matchDate;
     return strdup(matchDate->date);
@@ -129,7 +129,7 @@ char* getMatchDate(InitialNode* initial) {
 char* getTeamName(InitialNode* initial) {
 
     if(initial->info->team->teamType == NOTEAMNAME){
-        return strdup("");
+        return strdup("''");
     }
     char* teamName = initial->info->team->teamName;
     return strdup(teamName);
@@ -140,7 +140,7 @@ char* getSubstitutesArray() {
     symbol_t* symbolTable = getSymbolTable();
     CList* subsList = symbolTable->subs;
     if(subsList->count(subsList) == 0){
-        return strdup("{}");
+        return strdup("");
     }
     for (int i = 0; i < subsList->count(subsList)-1; i++) {
         player_t* player = subsList->at(subsList, i);
@@ -175,7 +175,7 @@ char* getFormationsArray() {
 }
 
 int Generator(InitialNode * initial) {
-	pythonFile = fopen("imageGenerator.py", "w");
+	pythonFile = fopen("./output/imageGenerator.py", "w");
 
     if(!validator(initial)){
         return -1;
