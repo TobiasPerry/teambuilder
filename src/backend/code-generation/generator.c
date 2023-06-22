@@ -120,7 +120,7 @@ char* getMatchResult(InitialNode* initial) {
 
 char* getMatchDate(InitialNode* initial) {
     if (initial->info->metadata == NULL || (initial->info->metadata->metadataType != COMPLETE && initial->info->metadata->metadataType != HASDATE)) {
-        return strdup("");
+        return strdup("''");
     }
     MatchDateNode* matchDate = initial->info->metadata->matchDate;
     return strdup(matchDate->date);
@@ -129,7 +129,7 @@ char* getMatchDate(InitialNode* initial) {
 char* getTeamName(InitialNode* initial) {
 
     if(initial->info->team->teamType == NOTEAMNAME){
-        return strdup("");
+        return strdup("''");
     }
     char* teamName = initial->info->team->teamName;
     return strdup(teamName);
@@ -140,7 +140,7 @@ char* getSubstitutesArray() {
     symbol_t* symbolTable = getSymbolTable();
     CList* subsList = symbolTable->subs;
     if(subsList->count(subsList) == 0){
-        return strdup("{}");
+        return strdup("");
     }
     for (int i = 0; i < subsList->count(subsList)-1; i++) {
         player_t* player = subsList->at(subsList, i);
@@ -190,10 +190,10 @@ int Generator(InitialNode * initial) {
     fprintf(pythonFile, "match_result = '%s'\n",matchResult);
     free(matchResult);
     char * matchDate = getMatchDate(initial);
-    fprintf(pythonFile, "match_date = '%s'\n",matchDate);
+    fprintf(pythonFile, "match_date = %s\n",matchDate);
     free(matchDate);
     char * teamName = getTeamName(initial);
-    fprintf(pythonFile, "team_name = '%s'\n",teamName);
+    fprintf(pythonFile, "team_name = %s\n",teamName);
     free(teamName);
     char * substitutesArray = getSubstitutesArray();
     fprintf(pythonFile, "substitutes = [%s]\n",substitutesArray);
