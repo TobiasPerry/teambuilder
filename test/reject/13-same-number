@@ -1,0 +1,23 @@
+START
+TEAM 'The Red Devils' OF 11 PLAYERS
+FORMATION
+4-4-2
+LINEUP
+1: 'Dithurbide Manuel Esteban'
+2: 'Alvés Daniel'
+3: 'Álvarez Julián'
+4: 'Garcia Maria'
+5: 'Lee David'
+6: 'Singh Ravi'
+7: 'Johnson Sarah'
+8: 'Martinez Pedro'
+9: 'Kim Soo-hyun'
+10: 'Davis Michael'
+10: 'Gomez Sofia'
+SUBSTITUTES
+12: 'La Maquina'
+13: 'Pedrito'
+14: 'El Rustico'
+METADATA
+DATE: '2001-07-07' RESULT: '5-0'
+END
