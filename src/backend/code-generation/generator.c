@@ -38,12 +38,46 @@ int validator(InitialNode * initial){
         }
     }
 
+
     //chequeo que la cantidad de jugadores que me enviaron coincida con la cantidad del equipo
+    CList* subsList = symbolTable->subs;
     CList* playerList = symbolTable->players;
-    if(playerList->count(playerList) !=  amt1){
+    int playerCount = playerList->count(playerList);
+    int subsCount = subsList->count(subsList);
+    if(playerCount !=  amt1){
         state.succeed = false;
         state.result = 3;
         return 0;
+    }
+    if(initial->info->numeration == NUM){
+        for(int i = 0; i < playerCount + subsCount; i++){
+            if(i < playerCount){
+                player_t* player = playerList->at(playerList, i);
+                aux = player->number;
+            }else{
+                player_t* player = subsList->at(subsList, i - playerCount);
+                aux = player->number;
+            }
+
+            for(int j= 0 ; j < playerCount + subsCount; j++){
+                if(j < playerCount){
+                    player_t* player = playerList->at(playerList, j);
+                    if(aux == player->number && j != i){
+                        state.succeed = false;
+                        state.result = 3;
+                        return 0;
+                    }
+                }else{
+                    player_t* player = subsList->at(subsList, j - playerCount);
+                    if(aux == player->number && j != i){
+                        state.succeed = false;
+                        state.result = 3;
+                        return 0;
+                    }
+                }
+            }
+        
+        }
     }
     return 1;
 }
@@ -287,7 +321,6 @@ int Generator(InitialNode * initial) {
                         "\n"
                         "\t# Save the resulting image\n"
                         "\tfinal_image.save(f\"result_{formation}.png\")\n");
-                        printf("Python file created successfully\n");
 
     fclose(pythonFile);
 
