@@ -24,8 +24,9 @@ const int main(const int argumentCount, const char ** arguments) {
 
 	// Compilar el programa de entrada.
 	LogInfo("Compilando...\n");
-	const int result = yyparse();
-	switch (result) {
+	int result = yyparse();
+	int preResult = result;
+	switch (preResult) {
 		case 0:
 			// La variable "succeed" es la que setea Bison al identificar el símbolo
 			// inicial de la gramática satisfactoriamente.
@@ -37,7 +38,7 @@ const int main(const int argumentCount, const char ** arguments) {
 						break;
 					case -1:
 						LogError("Error en tiempo de generacion de codigo");
-						result = 0;
+						result = -1;
 						break;
 				}
 				
