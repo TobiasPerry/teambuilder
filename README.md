@@ -129,6 +129,11 @@ En Windows:
 user@machine:path/ $ script\start.bat program
 ```
 
+Si el programa se compila sin errores y pasa las verificaciones, se generara un archivo imageGenerator.py dentro de la carpeta output en la raiz del proyecto. 
+
+Esta carpeta output se puede exportar y correr para generar la imagen deseada. 
+
+
 ## Testing
 
 En Linux:
